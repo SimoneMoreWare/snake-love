@@ -1,9 +1,9 @@
 body {
-    background-color: #FFCCE5;  /* Colore di sfondo romantico */
+    background-color: #FFCCE5;      /* Romantic background color */
     margin: 0;
     font-family: Arial, sans-serif;
     color: #333;
-    height: 100vh;  /* Assicura che il corpo prenda tutta l'altezza della finestra */
+    height: 100vh;  /* Secure that body takes all the height of the window */
     display: flex;
     justify-content: center;
     align-items: center;
