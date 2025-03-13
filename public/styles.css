@@ -1,7 +1,14 @@
+@font-face {
+    font-family: 'Arcade';
+    src: url('../assets/fonts/ARCADE.TTF') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
     background-color: #FFCCE5;      /* Romantic background color */
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: "Arcade", sans-serif;
     color: #333;
     height: 100vh;  /* Secure that body takes all the height of the window */
     display: flex;
@@ -9,7 +16,11 @@ body {
     align-items: center;
     flex-direction: column;
 }
-  
+
+h1, h2, h3, p {
+    font-family: "Arcade", sans-serif;
+}
+
 canvas {
     border: 1px solid black;
-  }
+}
