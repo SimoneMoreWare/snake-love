@@ -17,11 +17,3 @@ body {
     flex-direction: column;
 }
 
-h1, h2, h3, p {
-    font-family: "Arcade", sans-serif;
-    font-size: calc(2vw + 2vh); /* Combina vw e vh */
-}
-
-canvas {
-    border: 1px solid #333;
-}
