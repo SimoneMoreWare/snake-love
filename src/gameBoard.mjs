@@ -1,12 +1,13 @@
-import { NUM_ROWS, NUM_COLS } from './constants.mjs';  // Importa le costanti
+// src/gameBoard.mjs
+import { NUM_ROWS, NUM_COLS, CELL_SIZE } from './constants.mjs';
 
 export function createGameBoard() {
   const gameBoard = document.getElementById('game-board');
-
+  
   // Imposta il layout della griglia
   gameBoard.style.display = 'grid';
-  gameBoard.style.gridTemplateColumns = `repeat(${NUM_COLS}, 20px)`;
-  gameBoard.style.gridTemplateRows = `repeat(${NUM_ROWS}, 20px)`;
+  gameBoard.style.gridTemplateColumns = `repeat(${NUM_COLS}, ${CELL_SIZE})`;
+  gameBoard.style.gridTemplateRows = `repeat(${NUM_ROWS}, ${CELL_SIZE})`;
 
   // Crea le celle e aggiungile al contenitore
   for (let i = 0; i < NUM_ROWS * NUM_COLS; i++) {
