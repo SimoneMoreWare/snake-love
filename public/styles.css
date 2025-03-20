@@ -18,9 +18,9 @@ body {
 }
 
 #game-board {
-    border-radius: 100px;
+    border-radius: calc(100 * 1vw); /* Usando 1vw per scalare il border-radius */
     display: grid;
-    grid-template-columns: repeat(var(--num-cols), var(--cell-size));
-    grid-template-rows: repeat(var(--num-rows), var(--cell-size));
-    margin: 5px;
-  }
+    grid-template-columns: repeat(var(--num-cols), calc(var(--cell-size) * 1vw));
+    grid-template-rows: repeat(var(--num-rows), calc(var(--cell-size) * 1vw));
+    margin: calc(5 * 1vw); /* Margin scalato in base alla larghezza della finestra */
+}
