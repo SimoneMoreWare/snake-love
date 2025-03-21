@@ -7,20 +7,79 @@
 
 body {
     background-color: #FFCCE5;      /* Romantic background color */
-    margin: 0;
     font-family: "Arcade", sans-serif;
     color: #333;
-    height: 100vh;  /* Secure that body takes all the height of the window */
     display: flex;
-    justify-content: center;
     align-items: center;
-    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
 }
 
 #game-board {
-    border-radius: calc(100 * 1vw); /* Usando 1vw per scalare il border-radius */
     display: grid;
     grid-template-columns: repeat(var(--num-cols), calc(var(--cell-size) * 1vw));
     grid-template-rows: repeat(var(--num-rows), calc(var(--cell-size) * 1vw));
-    margin: calc(5 * 1vw); /* Margin scalato in base alla larghezza della finestra */
+    margin: calc(5 * 0vw); /* Margin scalato in base alla larghezza della finestra */
+}
+
+#author {
+    position: absolute;
+    top: 90%;
+    width: 30vw;
+    text-align: center;
+    text-transform: capitalize;
+    padding: calc(1 * 1vw); /* Padding scalato in base alla larghezza della finestra */
+    margin: calc(1 * 1vw); /* Margin scalato in base alla larghezza della finestra */
+    color: #333;
+    font-size: calc(1.5 * 1vw); /* Font-size scalato in base alla larghezza della finestra */
+    margin-top: calc(1 * 1vw); /* Margin-top scalato in base alla larghezza della finestra */
+}
+
+#instruction-text {
+    position: absolute;
+    top: 85%;
+    width: 50vw;
+    text-align: center;
+    text-transform: capitalize;
+    padding: calc(1 * 1vw); /* Padding scalato in base alla larghezza della finestra */
+    margin: calc(1 * 1vw); /* Margin scalato in base alla larghezza della finestra */
+    color: #333;
+    font-size: calc(1.5 * 1vw); /* Font-size scalato in base alla larghezza della finestra */
+    margin-top: calc(1 * 1vw); /* Margin-top scalato in base alla larghezza della finestra */
+}
+
+#game-board-container {
+    position: relative; /* Permette il posizionamento assoluto di .scores rispetto a esso */
+    padding: 0; /* Padding scalato in base alla larghezza della finestra */
+    margin: 0; /* Margin scalato in base alla larghezza della finestra */
+}
+
+.scores {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: -7%;
+    left: 0; /* Allinea il bordo sinistro con game-board */
+    width: 100%; /* Occupa tutta la larghezza di game-board */    
+    width: calc(var(--num-cols) * var(--cell-size) * 1vw); /* Larghezza uguale a game-board */
+    max-width: 90vw; /* Evita che diventi troppo larga */
+}
+
+#score, #highscore {
+    font-size: calc(1.5 * 1vw); /* Corretto l'errore di virgola in "1,5" */
+    margin: calc(1 * 1vw);
+    color: #333;
+    font-weight: bold;
+}
+
+#highscore {
+    display: none;
+}
+
+/* Migliora la leggibilità su smartphone (schermo più piccolo di 768px) */
+@media screen and (max-width: 768px), (max-height: 768px) {
+    #score, #highscore, #instruction-text, #author {
+        font-size: calc(4 * 1vw); /* Testo più grande */
+    }
 }
