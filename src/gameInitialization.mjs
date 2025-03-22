@@ -2,7 +2,7 @@
     import { addHeartsToBorders } from './heart.mjs';  
     import { Snake } from './snake.mjs';  
     import { Food } from './food.mjs';    
-    import { NUM_ROWS, NUM_COLS, SCORE, MOVEMENT_INTERVAL, FOOD_CHECK_INTERVAL } from './constants.mjs';  
+    import { SOUND_GAME_OVER, SOUND_LEVEL_UP_LIFE, NUM_ROWS, NUM_COLS, SCORE, MOVEMENT_INTERVAL, FOOD_CHECK_INTERVAL, SOUND_FOOD } from './constants.mjs';  
     import { JoystickController } from './joystick.mjs';  
     import { SENSIBILITY } from './constants.mjs';  
 
@@ -10,7 +10,7 @@
         constructor() {
             this.snake = null;
             this.food = null;
-            this.joystick = new JoystickController('stick', 64, 8);
+            this.joystick = new JoystickController('stick', 64, 8, 5);
             this.score = 0;
             this.intervals = [];
         }
@@ -58,7 +58,9 @@
             this.intervals.push(setInterval(() => {
                 this.updateDirectionWithJoystick();
                 this.snake.move();
-                if (this.snake.isGameOver) this.handleGameOver();
+                if (this.snake.isGameOver){
+                    this.handleGameOver();
+                }
             }, MOVEMENT_INTERVAL));
 
             // Controllo cibo
@@ -67,6 +69,11 @@
                     this.snake.body.unshift({ ...this.snake.body[0] });
                     this.food.regenerate();
                     this.score += SCORE;
+                    if(this.score % 100 === 0) {
+                        // **Riproduce il suono quando il punteggio raggiunge un multiplo di 100**
+                        const sound = new Audio(SOUND_LEVEL_UP_LIFE);  // Percorso del file audio
+                        sound.play().catch(error => console.error("Errore nella riproduzione audio:", error));
+                    }
                     document.getElementById('score').textContent = this.score.toString().padStart(3, '0');
                 }
             }, FOOD_CHECK_INTERVAL));
@@ -91,17 +98,20 @@
         }
 
         handleGameOver() {
-            if (this.isGameOver) return;  // Evita chiamate multiple
-            this.isGameOver = true;  
+            if (this.isGameOver) return; // Evita chiamate multiple
+            this.isGameOver = true;
         
-            alert('Game Over! 😢 Premi SPAZIO per riprovare.');
+            // **Riproduce il suono quando il gioco finisce**
+            const sound = new Audio(SOUND_GAME_OVER);
+            sound.play().catch(error => console.error("Errore nella riproduzione audio:", error));
         
-            //document.addEventListener('keydown', (event) => {
-                //if (event.code === 'Space') {
-                    this.restartGame();
-                //}
-            //}, { once: true });  // L'evento viene eseguito solo una volta
+            // **Aspetta la durata del suono prima di mostrare l'alert**
+            sound.onended = () => {
+                alert('Game Over! 😢 Premi OK per riprovare.');
+                this.restartGame();
+            };
         }
+        
         
         restartGame() {
             this.isGameOver = false;

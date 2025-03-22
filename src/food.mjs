@@ -1,4 +1,4 @@
-import { FOOD, NUM_ROWS, NUM_COLS } from './constants.mjs';  // Importa le costanti
+import { SOUND_FOOD, FOOD, NUM_ROWS, NUM_COLS } from './constants.mjs';  // Importa le costanti
 
 export class Food {
   constructor(snakeBody, wallPositions) {
@@ -40,12 +40,16 @@ export class Food {
   }
 
   // Rimuove il cibo dalla board
-  removeFromBoard() {
+ removeFromBoard() {
     const foodElement = document.querySelector('.food');
     if (foodElement) {
-      foodElement.remove();
+        foodElement.remove();
+        
+        // **Riproduce il suono quando il cibo viene rimosso**
+        const sound = new Audio(SOUND_FOOD); // Percorso del file audio
+        sound.play().catch(error => console.error("Errore nella riproduzione audio:", error));
     }
-  }
+ }
 
   // Posiziona il cibo sulla board
   placeOnBoard() {
