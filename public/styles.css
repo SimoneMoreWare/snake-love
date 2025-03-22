@@ -37,7 +37,7 @@ body {
 #author {
     position: absolute;
     top: 90%;
-    width: 30vw;
+    width: 70vw;
     text-align: center;
     text-transform: capitalize;
     padding: calc(1 * 1vw); /* Padding scalato in base alla larghezza della finestra */
@@ -72,8 +72,8 @@ body {
 .scores {
     display: flex;
     justify-content: space-between;
-    position: absolute;
-    top: 8%;
+    position: relative;
+    top: 0%;
     left: 0; /* Allinea il bordo sinistro con game-board */
     width: 100%; /* Occupa tutta la larghezza di game-board */    
     width: calc(var(--num-cols) * var(--cell-size) * 1vw); /* Larghezza uguale a game-board */
@@ -102,6 +102,6 @@ body {
         font-size: calc(4 * 1vw); /* Testo più grande */
     }
     #title {
-        font-size: calc(4 * 1.8vw); /* Testo molto grande */
+        font-size: calc(4 * 1.9vw); /* Testo molto grande */
     }
 }
