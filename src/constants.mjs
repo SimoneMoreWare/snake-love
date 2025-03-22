@@ -20,6 +20,9 @@ export const MOVEMENT_INTERVAL = 300;  // 300ms per il movimento del serpente
  * Un valore tipico potrebbe essere 100ms.
  */
 export const FOOD_CHECK_INTERVAL = 100;  // 100ms per verificare se il serpente ha mangiato il cibo
+export const BODY_EMOJIS = ['😀', '😉', '😋', '😎', '😍', '😘', '🥰', '🤩', '🤔', '😛', '🤤', '😲', '🤯', '😡', '🤬', '😇', '🥳', '🥺', '😈', '🤖', '💩', '🙈', '🐶', '🐔', '🐕‍🦺', '🐕', '🐖', '🐍', '🦔', '🐟', '🐓', '🐥', '👄', '💏', '👶', '👶🏻', '👩🏻‍⚕️', '👨🏻‍⚕️', '👨🏻‍🎓', '👨🏻‍💻', '🙅🏻‍♀️', '💪🏻', '🤏🏻', '🎈', '🥼', '💄', '💋', '🥇', '🧸', '🧩', '🩸', '📚', '📅', '📊', '⌚', '🚌', '🚘', '🚄', '🏠', '💧', '♍', '♏', '❌', '⛔', '🔞', '🚱', '🔰', '✅', '🔃'];
+
+export const FOOD = '🍗';  // Emoji cibo
 
 // Aggiungi un event listener per aggiornare CELL_SIZE quando la finestra viene ridimensionata
 window.addEventListener('resize', () => {

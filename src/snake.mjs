@@ -1,4 +1,4 @@
-import { NUM_ROWS, NUM_COLS } from './constants.mjs';  // Importa le costanti
+import { BODY_EMOJIS, NUM_ROWS, NUM_COLS } from './constants.mjs';  // Importa le costanti
 
 export class Snake {
   constructor(headEmoji, bodyEmoji) {
@@ -29,7 +29,7 @@ export class Snake {
 
       if (cell) {
         const part = document.createElement('span');
-        part.textContent = index === 0 ? this.headEmoji : this.bodyEmoji;
+        part.textContent = index === 0 ? this.headEmoji : getRandomBodyEmoji(); // Usa la funzione per ottenere un'emoji casuale
         part.classList.add('snake');
         cell.appendChild(part);
       }
@@ -87,4 +87,10 @@ export class Snake {
         this.placeOnBoard();
     }
       
+}
+
+// Funzione per pescare una emoji casuale dalla lista BODY_EMOJIS
+export function getRandomBodyEmoji() {
+    const randomIndex = Math.floor(Math.random() * BODY_EMOJIS.length);
+    return BODY_EMOJIS[randomIndex];
 }

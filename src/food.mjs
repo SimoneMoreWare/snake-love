@@ -1,4 +1,4 @@
-import { NUM_ROWS, NUM_COLS } from './constants.mjs';  // Importa le costanti
+import { FOOD, NUM_ROWS, NUM_COLS } from './constants.mjs';  // Importa le costanti
 
 export class Food {
   constructor(snakeBody, wallPositions) {
@@ -58,7 +58,7 @@ export class Food {
 
     if (cell) {
       const foodElement = document.createElement('span');
-      foodElement.textContent = '🍏';  // Emoji cibo
+      foodElement.textContent = FOOD;  // Emoji cibo
       foodElement.classList.add('food');  // Aggiungi la classe per stilizzare il cibo
       cell.appendChild(foodElement);  // Aggiungi il cibo alla cella
     }
