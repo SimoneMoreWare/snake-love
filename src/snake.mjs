@@ -53,40 +53,52 @@ export class Snake {
   
     return false;
   }
-  
 
-    move() {
-        if (this.isGameOver) return;
-      
-        this.clearFromBoard();
-      
-        const newHead = { ...this.body[0] };
-      
-        switch (this.direction) {
-          case 'UP':
-            newHead.y -= 1;
-            break;
-          case 'DOWN':
-            newHead.y += 1;
-            break;
-          case 'LEFT':
-            newHead.x -= 1;
-            break;
-          case 'RIGHT':
-            newHead.x += 1;
-            break;
-        }
-      
-        // Controlla se c'è una collisione
-        if (this.checkCollision(newHead)) return; // Blocca il movimento in caso di Game Over
-      
-        // Aggiungi il nuovo segmento della testa al serpente
-        this.body.pop();  // Rimuove l'ultimo segmento
-        this.body.unshift(newHead);  // Aggiungi la nuova testa in cima al corpo
-      
-        this.placeOnBoard();
+  // Funzione per cambiare direzione
+  changeDirection(newDirection) {
+    // Evita che la direzione sia opposta alla direzione attuale
+    if (
+      (this.direction === 'RIGHT' && newDirection === 'LEFT') ||
+      (this.direction === 'LEFT' && newDirection === 'RIGHT') ||
+      (this.direction === 'UP' && newDirection === 'DOWN') ||
+      (this.direction === 'DOWN' && newDirection === 'UP')
+    ) {
+      return; // Non cambia direzione se è opposta
     }
-      
+    this.direction = newDirection;
+  }
+
+  move() {
+    if (this.isGameOver) return;
+
+    this.clearFromBoard();
+
+    const newHead = { ...this.body[0] };
+
+    switch (this.direction) {
+      case 'UP':
+        newHead.y -= 1;
+        break;
+      case 'DOWN':
+        newHead.y += 1;
+        break;
+      case 'LEFT':
+        newHead.x -= 1;
+        break;
+      case 'RIGHT':
+        newHead.x += 1;
+        break;
+    }
+
+    // Controlla se c'è una collisione
+    if (this.checkCollision(newHead)) return; // Blocca il movimento in caso di Game Over
+
+    // Aggiungi il nuovo segmento della testa al serpente
+    this.body.pop();  // Rimuove l'ultimo segmento
+    this.body.unshift(newHead);  // Aggiungi la nuova testa in cima al corpo
+
+    this.placeOnBoard();
+  }
 }
 
 // Funzione per pescare una emoji casuale dalla lista BODY_EMOJIS

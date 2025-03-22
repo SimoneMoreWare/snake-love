@@ -41,21 +41,23 @@ let score = 0;
 // Crea e configura il joystick
 const joystick = new JoystickController('stick', 64, 8);
 
-// Funzione per aggiornare la direzione dello Snake con il joystick
+// Funzione per aggiornare la direzione dello Snake con il joystickfunction updateDirectionWithJoystick() {
 function updateDirectionWithJoystick() {
-  if (joystick.value.x > SENSIBILITY) mySnake.direction = 'RIGHT';
-  else if (joystick.value.x < -SENSIBILITY) mySnake.direction = 'LEFT';
-  else if (joystick.value.y > SENSIBILITY) mySnake.direction = 'DOWN';
-  else if (joystick.value.y < -SENSIBILITY) mySnake.direction = 'UP';
+    if (joystick.value.x > SENSIBILITY) mySnake.changeDirection('RIGHT');
+    else if (joystick.value.x < -SENSIBILITY) mySnake.changeDirection('LEFT');
+    else if (joystick.value.y > SENSIBILITY) mySnake.changeDirection('DOWN');
+    else if (joystick.value.y < -SENSIBILITY) mySnake.changeDirection('UP');
 }
+      
+
 
 // Event listener per il movimento con il tasto
 document.addEventListener('keydown', (event) => {
-  const key = event.key.toLowerCase();
-  if (key === 'arrowup' || key === 'w') mySnake.direction = 'UP';
-  else if (key === 'arrowdown' || key === 's') mySnake.direction = 'DOWN';
-  else if (key === 'arrowleft' || key === 'a') mySnake.direction = 'LEFT';
-  else if (key === 'arrowright' || key === 'd') mySnake.direction = 'RIGHT';
+    const key = event.key.toLowerCase();
+    if (key === 'arrowup' || key === 'w') mySnake.changeDirection('UP');
+    else if (key === 'arrowdown' || key === 's') mySnake.changeDirection('DOWN');
+    else if (key === 'arrowleft' || key === 'a') mySnake.changeDirection('LEFT');
+    else if (key === 'arrowright' || key === 'd') mySnake.changeDirection('RIGHT');
 });
 
 // Avvia il movimento dello snake ogni MOVEMENT_INTERVAL ms
