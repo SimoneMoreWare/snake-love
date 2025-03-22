@@ -2,7 +2,7 @@ import { createGameBoard } from './gameBoard.mjs';  // Importa la funzione per c
 import { addHeartsToBorders } from './heart.mjs';  // Importa la funzione per aggiungere i cuori
 import { Snake } from './snake.mjs';  // Importa la classe Snake
 import { Food } from './food.mjs';    // Importa la classe Food
-import { NUM_ROWS, NUM_COLS } from './constants.mjs';  // Importa le costanti
+import { NUM_ROWS, NUM_COLS, SCORE, MOVEMENT_INTERVAL, FOOD_CHECK_INTERVAL } from './constants.mjs';  // Importa le costanti
 
 // Crea la griglia di gioco
 createGameBoard();
@@ -33,6 +33,9 @@ mySnake.placeOnBoard();
 // Posiziona il cibo sulla board
 food.placeOnBoard();
 
+// Variabile per il punteggio
+let score = 0;  // Inizializza il punteggio
+
 // Event listener per controllare il movimento
 document.addEventListener('keydown', (event) => {
   const key = event.key.toLowerCase();
@@ -42,10 +45,10 @@ document.addEventListener('keydown', (event) => {
   else if (key === 'arrowright' || key === 'd') mySnake.direction = 'RIGHT';
 });
 
-// Avvia il movimento dello snake ogni 300ms
+// Avvia il movimento dello snake ogni MOVEMENT_INTERVAL ms
 setInterval(() => {
   mySnake.move();
-}, 300);
+}, MOVEMENT_INTERVAL);  // Usa la costante MOVEMENT_INTERVAL
 
 // Gestisci l'interazione tra il serpente e il cibo
 setInterval(() => {
@@ -53,5 +56,11 @@ setInterval(() => {
   if (mySnake.body[0].x === food.position.x && mySnake.body[0].y === food.position.y) {
     mySnake.body.unshift({ ...mySnake.body[0] });  // Aggiungi un segmento al corpo
     food.regenerate();  // Rigenera il cibo
+
+    // Incrementa il punteggio con il valore di SCORE
+    score += SCORE;  // Aggiungi SCORE al punteggio
+
+    // Aggiorna il display del punteggio
+    document.getElementById('score').textContent = score.toString().padStart(3, '0'); // Aggiorna il punteggio
   }
-}, 100);
+}, FOOD_CHECK_INTERVAL);  // Usa la costante FOOD_CHECK_INTERVAL

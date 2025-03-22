@@ -43,7 +43,7 @@ export class Snake {
     );
   
     // Controlla se ha colpito il muro (senza usare il wrapping)
-    const hasHitWall = newHead.x < 0 || newHead.x >= NUM_COLS || newHead.y < 0 || newHead.y >= NUM_ROWS;
+    const hasHitWall = newHead.x <= 0 || newHead.x >= NUM_COLS - 1 || newHead.y <= 0 || newHead.y >= NUM_ROWS - 1;
   
     if (hasHitBody || hasHitWall) {
       this.isGameOver = true;
