@@ -14,6 +14,8 @@
     font-family: "Arcade", sans-serif;
     padding-top: 0;
     margin-top: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
 }
 
 body {
@@ -35,16 +37,13 @@ body {
 }
 
 #author {
-    position: absolute;
-    top: 90%;
+    position: relative;
+    top: 5%;
     width: 70vw;
     text-align: center;
     text-transform: capitalize;
-    padding: calc(1 * 1vw); /* Padding scalato in base alla larghezza della finestra */
-    margin: calc(1 * 1vw); /* Margin scalato in base alla larghezza della finestra */
     color: #333;
-    font-size: calc(1.5 * 1vw); /* Font-size scalato in base alla larghezza della finestra */
-    margin-top: calc(1 * 1vw); /* Margin-top scalato in base alla larghezza della finestra */
+    font-size: calc(1.5 * 0.5vw); /* Font-size scalato in base alla larghezza della finestra */
 }
 
 #instruction-text {
