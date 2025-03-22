@@ -1,7 +1,8 @@
 import { BODY_EMOJIS, NUM_ROWS, NUM_COLS } from './constants.mjs';  // Importa le costanti
 
 export class Snake {
-  constructor(headEmoji, bodyEmoji) {
+  constructor(game, headEmoji, bodyEmoji) {
+    this.game = game;  // Salva il riferimento all'oggetto Game
     this.body = [{ x: 5, y: 5 }, { x: 4, y: 5 }, { x: 3, y: 5 }];
     this.headEmoji = headEmoji || '😎';
     this.bodyEmoji = bodyEmoji || '🥰';
@@ -37,20 +38,14 @@ export class Snake {
   }
 
   checkCollision(newHead) {
-    // Controlla se la testa collide con il corpo
-    const hasHitBody = this.body.some(
-      (segment) => segment.x === newHead.x && segment.y === newHead.y
-    );
-  
-    // Controlla se ha colpito il muro (senza usare il wrapping)
+    const hasHitBody = this.body.some(segment => segment.x === newHead.x && segment.y === newHead.y);
     const hasHitWall = newHead.x <= 0 || newHead.x >= NUM_COLS - 1 || newHead.y <= 0 || newHead.y >= NUM_ROWS - 1;
-  
+
     if (hasHitBody || hasHitWall) {
       this.isGameOver = true;
-      alert('Game Over! 😢');
+      this.game.handleGameOver();  // Usa il metodo corretto di Game
       return true;
     }
-  
     return false;
   }
 
