@@ -18,6 +18,13 @@
     padding-bottom: 0;
 }
 
+html {
+    overflow: hidden;
+    height: 100%;
+    touch-action: none; /* Disabilita lo scrolling e il pinch zoom */
+}
+
+
 body {
     background-color: #FFCCE5;      /* Romantic background color */
     font-family: "Arcade", sans-serif;
@@ -27,6 +34,8 @@ body {
     justify-content: center;
     height: 100vh;
     margin: 0;
+    touch-action: none; /* Disabilita lo scrolling e il pinch zoom */
+    overflow: hidden; /* Disabilita lo scrolling */
 }
 
 #game-board {
