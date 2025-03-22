@@ -4,6 +4,7 @@ import { Snake } from './snake.mjs';
 import { Food } from './food.mjs';    
 import { NUM_ROWS, NUM_COLS, SCORE, MOVEMENT_INTERVAL, FOOD_CHECK_INTERVAL } from './constants.mjs';  
 import { JoystickController } from './joystick.mjs';  // Importa il joystick
+import { SENSIBILITY } from './constants.mjs';  // Importa la sensibilità
 
 // Crea la griglia di gioco
 createGameBoard();
@@ -42,10 +43,10 @@ const joystick = new JoystickController('stick', 64, 8);
 
 // Funzione per aggiornare la direzione dello Snake con il joystick
 function updateDirectionWithJoystick() {
-  if (joystick.value.x > 0.1) mySnake.direction = 'RIGHT';
-  else if (joystick.value.x < -0.1) mySnake.direction = 'LEFT';
-  else if (joystick.value.y > 0.1) mySnake.direction = 'DOWN';
-  else if (joystick.value.y < -0.1) mySnake.direction = 'UP';
+  if (joystick.value.x > SENSIBILITY) mySnake.direction = 'RIGHT';
+  else if (joystick.value.x < -SENSIBILITY) mySnake.direction = 'LEFT';
+  else if (joystick.value.y > SENSIBILITY) mySnake.direction = 'DOWN';
+  else if (joystick.value.y < -SENSIBILITY) mySnake.direction = 'UP';
 }
 
 // Event listener per il movimento con il tasto

@@ -1,5 +1,5 @@
 export class JoystickController {
-    constructor(stickID, maxDistance, deadzone) {
+    constructor(stickID, maxDistance, deadzone, minMoveDistance) {
       this.id = stickID;
       let stick = document.getElementById(stickID);
       this.dragStart = null;
@@ -44,8 +44,22 @@ export class JoystickController {
         const distance2 = (distance < deadzone) ? 0 : maxDistance / (maxDistance - deadzone) * (distance - deadzone);
         const xPosition2 = distance2 * Math.cos(angle);
         const yPosition2 = distance2 * Math.sin(angle);
-        const xPercent = parseFloat((xPosition2 / maxDistance).toFixed(4));
-        const yPercent = parseFloat((yPosition2 / maxDistance).toFixed(4));
+  
+        // Calcolare la percentuale di movimento
+        let xPercent = parseFloat((xPosition2 / maxDistance).toFixed(4));
+        let yPercent = parseFloat((yPosition2 / maxDistance).toFixed(4));
+  
+        // Inibire le diagonali: se entrambi sono quasi uguali, considera solo uno dei due
+        if (Math.abs(xPercent) < 0.2 && Math.abs(yPercent) < 0.2) {
+          xPercent = 0;
+          yPercent = 0;
+        }
+  
+        // Ridurre l'intensità: muovi solo se la distanza è oltre una soglia minima
+        if (Math.hypot(xDiff, yDiff) < minMoveDistance) {
+          xPercent = 0;
+          yPercent = 0;
+        }
   
         self.value = { x: xPercent, y: yPercent };
       }
