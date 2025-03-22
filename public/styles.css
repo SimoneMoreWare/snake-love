@@ -5,6 +5,17 @@
     font-style: normal;
 }
 
+#title {
+    top: 0%;
+    position: relative; 
+    text-align: center;
+    font-size: calc(1.5 * 1.8vw); /* Font-size scalato in base alla larghezza della finestra */
+    color: #333;    
+    font-family: "Arcade", sans-serif;
+    padding-top: 0;
+    margin-top: 0;
+}
+
 body {
     background-color: #FFCCE5;      /* Romantic background color */
     font-family: "Arcade", sans-serif;
@@ -59,7 +70,7 @@ body {
     display: flex;
     justify-content: space-between;
     position: absolute;
-    top: -7%;
+    top: 8%;
     left: 0; /* Allinea il bordo sinistro con game-board */
     width: 100%; /* Occupa tutta la larghezza di game-board */    
     width: calc(var(--num-cols) * var(--cell-size) * 1vw); /* Larghezza uguale a game-board */
@@ -81,5 +92,8 @@ body {
 @media screen and (max-width: 768px), (max-height: 768px) {
     #score, #highscore, #instruction-text, #author {
         font-size: calc(4 * 1vw); /* Testo più grande */
+    }
+    #title {
+        font-size: calc(4 * 1.8vw); /* Testo molto grande */
     }
 }
