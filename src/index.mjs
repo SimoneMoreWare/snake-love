@@ -1,8 +1,9 @@
-import { createGameBoard } from './gameBoard.mjs';  // Importa la funzione per creare la griglia
-import { addHeartsToBorders } from './heart.mjs';  // Importa la funzione per aggiungere i cuori
-import { Snake } from './snake.mjs';  // Importa la classe Snake
-import { Food } from './food.mjs';    // Importa la classe Food
-import { NUM_ROWS, NUM_COLS, SCORE, MOVEMENT_INTERVAL, FOOD_CHECK_INTERVAL } from './constants.mjs';  // Importa le costanti
+import { createGameBoard } from './gameBoard.mjs';  
+import { addHeartsToBorders } from './heart.mjs';  
+import { Snake } from './snake.mjs';  
+import { Food } from './food.mjs';    
+import { NUM_ROWS, NUM_COLS, SCORE, MOVEMENT_INTERVAL, FOOD_CHECK_INTERVAL } from './constants.mjs';  
+import { JoystickController } from './joystick.mjs';  // Importa il joystick
 
 // Crea la griglia di gioco
 createGameBoard();
@@ -11,9 +12,9 @@ createGameBoard();
 addHeartsToBorders();
 
 // Crea un'istanza dello snake personalizzato
-const mySnake = new Snake('👨', '👩');  // Testa = uomo, Corpo = donna
+const mySnake = new Snake('👨', '👩');  
 
-// Calcola le posizioni dei muri (le celle dei bordi)
+// Calcola le posizioni dei muri
 const wallPositions = [];
 for (let i = 0; i < NUM_ROWS; i++) {
   wallPositions.push({ x: 0, y: i }); // Muro sinistro
@@ -34,9 +35,20 @@ mySnake.placeOnBoard();
 food.placeOnBoard();
 
 // Variabile per il punteggio
-let score = 0;  // Inizializza il punteggio
+let score = 0;
 
-// Event listener per controllare il movimento
+// Crea e configura il joystick
+const joystick = new JoystickController('stick', 64, 8);
+
+// Funzione per aggiornare la direzione dello Snake con il joystick
+function updateDirectionWithJoystick() {
+  if (joystick.value.x > 0.1) mySnake.direction = 'RIGHT';
+  else if (joystick.value.x < -0.1) mySnake.direction = 'LEFT';
+  else if (joystick.value.y > 0.1) mySnake.direction = 'DOWN';
+  else if (joystick.value.y < -0.1) mySnake.direction = 'UP';
+}
+
+// Event listener per il movimento con il tasto
 document.addEventListener('keydown', (event) => {
   const key = event.key.toLowerCase();
   if (key === 'arrowup' || key === 'w') mySnake.direction = 'UP';
@@ -47,20 +59,16 @@ document.addEventListener('keydown', (event) => {
 
 // Avvia il movimento dello snake ogni MOVEMENT_INTERVAL ms
 setInterval(() => {
+  updateDirectionWithJoystick();  // Usa il joystick per aggiornare la direzione
   mySnake.move();
-}, MOVEMENT_INTERVAL);  // Usa la costante MOVEMENT_INTERVAL
+}, MOVEMENT_INTERVAL);
 
 // Gestisci l'interazione tra il serpente e il cibo
 setInterval(() => {
-  // Verifica se il serpente ha mangiato il cibo
   if (mySnake.body[0].x === food.position.x && mySnake.body[0].y === food.position.y) {
-    mySnake.body.unshift({ ...mySnake.body[0] });  // Aggiungi un segmento al corpo
-    food.regenerate();  // Rigenera il cibo
-
-    // Incrementa il punteggio con il valore di SCORE
-    score += SCORE;  // Aggiungi SCORE al punteggio
-
-    // Aggiorna il display del punteggio
-    document.getElementById('score').textContent = score.toString().padStart(3, '0'); // Aggiorna il punteggio
+    mySnake.body.unshift({ ...mySnake.body[0] });
+    food.regenerate();
+    score += SCORE;
+    document.getElementById('score').textContent = score.toString().padStart(3, '0');
   }
-}, FOOD_CHECK_INTERVAL);  // Usa la costante FOOD_CHECK_INTERVAL
+}, FOOD_CHECK_INTERVAL);

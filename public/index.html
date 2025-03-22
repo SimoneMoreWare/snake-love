@@ -8,6 +8,7 @@
     </head>
     <body>
         <div id="game-board-container">
+            <br>
             <header><h1 id="title">Snake Love 💖🐍 </h1></header>
             <br>
             <div class="scores">
@@ -18,7 +19,16 @@
             <div id="game-board-container">
                 <div id="game-board"></div>
             </div>
+
+             <!-- Joystick div posizionato sotto -->
+            <div id="joystick-container" style="border: 1px solid red; width: 128px; position: relative; margin-top: 20px; left: 10px;">
+                <img src="../assets/joystick-base.png">
+                <div id="stick" style="position: absolute; left: 32px; top: 32px; transition: all 0.2s ease 0s; transform: translate3d(0px, 0px, 0px);">
+                    <img src="../assets/joystick-red.png">
+                </div>
+            </div>
         </div>
+       
         <!--<h1 id="instruction-text">Press Spacebar to start</h1>-->
         <h1 id="author">Created by Simo&Mary</h1>
     </body>
