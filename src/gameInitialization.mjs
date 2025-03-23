@@ -5,12 +5,14 @@
     import { SOUND_GAME_OVER, SOUND_LEVEL_UP_LIFE, NUM_ROWS, NUM_COLS, SCORE, MOVEMENT_INTERVAL, FOOD_CHECK_INTERVAL, SOUND_FOOD } from './constants.mjs';  
     import { JoystickController } from './joystick.mjs';  
     import { SENSIBILITY } from './constants.mjs';  
+    import { Timer } from './timer.mjs';
 
     export class Game {
         constructor() {
             this.snake = null;
             this.food = null;
             this.joystick = new JoystickController('stick', 64, 8, 5);
+            this.timer = new Timer();
             this.score = 0;
             this.intervals = [];
         }
@@ -19,6 +21,7 @@
             this.resetBoard();
             this.initializeGame();
             this.addEventListeners();
+            this.timer.start(); // Avvia il timer all'inizio del gioco
         }
 
         resetBoard() {
@@ -100,6 +103,8 @@
         handleGameOver() {
             if (this.isGameOver) return; // Evita chiamate multiple
             this.isGameOver = true;
+
+            this.timer.stop(); // Ferma il timer
         
             // **Riproduce il suono quando il gioco finisce**
             const sound = new Audio(SOUND_GAME_OVER);
@@ -122,6 +127,8 @@
             this.snake = new Snake(this, '👨', '👩');  // Ricrea il serpente
             this.food = new Food(this.snake.body, []);  // Rigenera il cibo
         
+            this.timer.reset(); // Resetta il timer
+
             this.start();  // Riavvia il gioco
         }
     }

@@ -45,6 +45,18 @@ body {
     margin: calc(5 * 0vw); /* Margin scalato in base alla larghezza della finestra */
 }
 
+#timer {
+    position: relative;
+    top: 5%;
+    width: 70vw;
+    text-align: center;
+    text-transform: capitalize;
+    font-weight: bold;
+    font-family: 'Arcade', sans-serif;  
+    color: #333;
+    font-size: calc(1.5 * 1vw); /* Font-size scalato in base alla larghezza della finestra */
+}
+
 #author {
     position: relative;
     top: 5%;
@@ -79,18 +91,15 @@ body {
 
 .scores {
     display: flex;
-    justify-content: space-between;
     position: relative;
     top: 0%;
     left: 0; /* Allinea il bordo sinistro con game-board */
-    width: 100%; /* Occupa tutta la larghezza di game-board */    
     width: calc(var(--num-cols) * var(--cell-size) * 1vw); /* Larghezza uguale a game-board */
     max-width: 90vw; /* Evita che diventi troppo larga */
 }
 
 #score, #highscore {
     font-size: calc(1.5 * 1vw); /* Corretto l'errore di virgola in "1,5" */
-    margin: calc(1 * 1vw);
     color: #333;
     font-weight: bold;
 }
