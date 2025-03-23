@@ -30,7 +30,7 @@ export class Snake {
 
       if (cell) {
         const part = document.createElement('span');
-        part.textContent = index === 0 ? this.headEmoji : getRandomBodyEmoji(); // Usa la funzione per ottenere un'emoji casuale
+        part.textContent = index === 0 ? this.headEmoji : index === 1 ? this.bodyEmoji : getRandomBodyEmoji();
         part.classList.add('snake');
         cell.appendChild(part);
       }
