@@ -34,6 +34,7 @@ body {
     justify-content: center;
     height: 100vh;
     margin: 0;
+    padding: 0;
     touch-action: none; /* Disabilita lo scrolling e il pinch zoom */
     overflow: hidden; /* Disabilita lo scrolling */
 }
@@ -48,6 +49,7 @@ body {
 #timer {
     position: relative;
     top: 5%;
+    left: 1vw;
     width: 70vw;
     text-align: center;
     text-transform: capitalize;
@@ -81,19 +83,33 @@ body {
 }
 
 #game-board-container {
-    position: relative; /* Permette il posizionamento assoluto di .scores rispetto a esso */
-    padding: 0; /* Padding scalato in base alla larghezza della finestra */
-    margin: 0; /* Margin scalato in base alla larghezza della finestra */
+    position: relative;
+    padding: 0;
+    margin: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
+    top: -4%; /* Valore di default per PC */
 }
 
+/* Media query per schermi piccoli (telefonini) */
+@media (max-width: 768px) {
+    #game-board-container {
+        top: -10%; /* Valore per telefono */
+    }
+}
+
+/* Media query per schermi più grandi (tablet o PC) */
+@media (min-width: 769px) {
+    #game-board-container {
+        top: -4%; /* Valore per PC */
+    }
+}
 .scores {
     display: flex;
     position: relative;
     top: 0%;
-    left: 0; /* Allinea il bordo sinistro con game-board */
+    left: 1vw; /* Allinea il bordo sinistro con game-board */
     width: calc(var(--num-cols) * var(--cell-size) * 1vw); /* Larghezza uguale a game-board */
     max-width: 90vw; /* Evita che diventi troppo larga */
 }
@@ -102,6 +118,7 @@ body {
     font-size: calc(1.5 * 1vw); /* Corretto l'errore di virgola in "1,5" */
     color: #333;
     font-weight: bold;
+    font-family: 'Arcade', sans-serif;
 }
 
 #highscore {
@@ -115,7 +132,7 @@ body {
 
 /* Migliora la leggibilità su smartphone (schermo più piccolo di 768px) */
 @media screen and (max-width: 768px), (max-height: 768px) {
-    #score, #highscore, #instruction-text, #author {
+    #score, #highscore, #instruction-text, #author, #timer {
         font-size: calc(4 * 1vw); /* Testo più grande */
     }
     #title {
