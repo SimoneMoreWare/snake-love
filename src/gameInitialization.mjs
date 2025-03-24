@@ -77,21 +77,23 @@
         }
 
         addStartListener() {
-            const startKeyHandler = (event) => {
+            const startHandler = () => {
                 if (!this.isGameReady) {
                     this.isGameReady = true;
                     this.startOverlay.style.display = 'none';
                     this.initializeGame();
                     this.timer.start();
-                    
-                    // Rimuovi il listener dopo l'inizio del gioco
-                    document.removeEventListener('keydown', startKeyHandler);
+        
+                    // Rimuove i listener dopo l'inizio del gioco
+                    document.removeEventListener('keydown', startHandler);
+                    document.removeEventListener('touchstart', startHandler);
                 }
             };
-    
-            document.addEventListener('keydown', startKeyHandler);
+        
+            document.addEventListener('keydown', startHandler);
+            document.addEventListener('touchstart', startHandler); // Aggiunto supporto touch
         }
-
+        
         togglePause() {
             // Non permettere pausa se il gioco è finito
             if (this.isGameOver) return;
