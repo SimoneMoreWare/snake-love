@@ -11,7 +11,7 @@
         constructor() {
             this.snake = null;
             this.food = null;
-            this.joystick = new JoystickController('stick', 64, 8, 5);
+            this.joystick = new JoystickController('stick', 64, 8, 1);
             this.timer = new Timer();
             this.score = 0;
             this.intervals = [];
@@ -93,7 +93,7 @@
             document.addEventListener('keydown', startHandler);
             document.addEventListener('touchstart', startHandler); // Aggiunto supporto touch
         }
-        
+
         togglePause() {
             // Non permettere pausa se il gioco è finito
             if (this.isGameOver) return;
@@ -200,10 +200,13 @@
         }
 
         updateDirectionWithJoystick() {
-            if (this.joystick.value.x > SENSIBILITY) this.snake.changeDirection('RIGHT');
-            else if (this.joystick.value.x < -SENSIBILITY) this.snake.changeDirection('LEFT');
-            else if (this.joystick.value.y > SENSIBILITY) this.snake.changeDirection('DOWN');
-            else if (this.joystick.value.y < -SENSIBILITY) this.snake.changeDirection('UP');
+            if (Math.abs(this.joystick.value.x) > Math.abs(this.joystick.value.y)) {
+                if (this.joystick.value.x > SENSIBILITY) this.snake.changeDirection('RIGHT');
+                else if (this.joystick.value.x < -SENSIBILITY) this.snake.changeDirection('LEFT');
+            } else {
+                if (this.joystick.value.y > SENSIBILITY) this.snake.changeDirection('DOWN');
+                else if (this.joystick.value.y < -SENSIBILITY) this.snake.changeDirection('UP');
+            }
         }
 
         handleGameOver() {

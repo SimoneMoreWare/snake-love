@@ -27,7 +27,7 @@ export const FOOD = '🍗';  // Emoji cibo
 export const SOUND_FOOD = '../assets/soundEffects/food.mp3';  // Percorso del file audio
 export const SOUND_GAME_OVER = '../assets/soundEffects/mario_game_over_sms.mp3';  // Percorso del file audio
 export const SOUND_LEVEL_UP_LIFE = '../assets/soundEffects/90s-game-ui-6-185099.mp3';  // Percorso del file audio            
-export const SENSIBILITY = 0.03;  // Sensibilità del joystick
+export const SENSIBILITY = 0.0015;  // Sensibilità del joystick
 // Aggiungi un event listener per aggiornare CELL_SIZE quando la finestra viene ridimensionata
 window.addEventListener('resize', () => {
     CELL_SIZE = window.innerWidth < 768 || window.innerHeight < 768 ? '4vw' : '1.3vw';
