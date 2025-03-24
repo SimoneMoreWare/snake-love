@@ -135,7 +135,7 @@ body {
     #score, #highscore, #instruction-text, #author, #timer {
         font-size: calc(4 * 1vw); /* Testo più grande */
     }
-    #titlem, #timer {
+    #title{
         font-size: calc(4 * 1.9vw); /* Testo molto grande */
     }
 }
