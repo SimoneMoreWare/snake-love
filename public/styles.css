@@ -89,7 +89,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    top: -4%; /* Valore di default per PC */
+    top: -3%; /* Valore di default per PC */
 }
 
 /* Media query per schermi piccoli (telefonini) */
@@ -102,7 +102,7 @@ body {
 /* Media query per schermi più grandi (tablet o PC) */
 @media (min-width: 769px) {
     #game-board-container {
-        top: -4%; /* Valore per PC */
+        top: -3%; /* Valore per PC */
     }
 }
 .scores {

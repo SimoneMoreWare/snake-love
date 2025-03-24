@@ -43,7 +43,7 @@
             this.startOverlay.classList.add('start-overlay');
             this.startOverlay.innerHTML = `
                 <div class="start-container">
-                    <h2>Snake Game</h2>
+                    <h2>Snake Love <3</h2>
                     <p>Premi un qualsiasi tasto per iniziare!</p>
                     <div class="start-instructions">
                         <p>Comandi:</p>
