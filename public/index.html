@@ -36,9 +36,18 @@
                 <!--<h1 id="instruction-text">Press Spacebar to start</h1>-->
             </div>
 
-            <div id="game-over-message" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            background: rgba(0, 0, 0, 0.8); color: white; padding: 20px; font-size: 24px; text-align: center; border-radius: 10px;">
-            Game Over! Premi SPAZIO per ricominciare.
+            <div id="start-overlay" class="start-overlay" style="display: none;">
+                <div class="start-container">
+                    <h2>Snake Game</h2>
+                    <p>Premi un qualsiasi tasto per iniziare!</p>
+                    <div class="start-instructions">
+                        <p>Comandi:</p>
+                        <ul>
+                            <li>🏹 Frecce direzionali o WASD per muoverti</li>
+                            <li>P per mettere in pausa</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
 
         </div>

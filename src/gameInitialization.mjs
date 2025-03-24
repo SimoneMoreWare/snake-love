@@ -17,31 +17,57 @@
             this.intervals = [];
             this.isPaused = false;
             this.pauseOverlay = null;
-
+            this.startOverlay = null;
+            this.isGameReady = false;
             // Bind del metodo per mantenere il contesto corretto
             this.handleKeyDown = this.handleKeyDown.bind(this);
         }
 
         start() {
             this.resetBoard();
-            this.initializeGame();
+            this.createStartOverlay();
             this.createPauseOverlay();
             this.addEventListeners();
-            this.timer.start();
+            this.addStartListener();
         }
     
+
+        createStartOverlay() {
+            // Rimuovi eventuali overlay esistenti
+            if (this.startOverlay) {
+                this.startOverlay.remove();
+            }
+    
+            this.startOverlay = document.createElement('div');
+            this.startOverlay.id = 'start-overlay';
+            this.startOverlay.classList.add('start-overlay');
+            this.startOverlay.innerHTML = `
+                <div class="start-container">
+                    <h2>Snake Game</h2>
+                    <p>Premi un qualsiasi tasto per iniziare!</p>
+                    <div class="start-instructions">
+                        <p>Comandi:</p>
+                        <ul>
+                            <li>🏹 Frecce direzionali o WASD per muoverti</li>
+                            <li>P per mettere in pausa</li>
+                        </ul>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(this.startOverlay);
+        }
 
         createPauseOverlay() {
             // Se l'overlay già esiste, rimuovilo
             if (this.pauseOverlay) {
                 this.pauseOverlay.remove();
             }
-    
+
             this.pauseOverlay = document.createElement('div');
             this.pauseOverlay.id = 'pause-overlay';
             this.pauseOverlay.classList.add('pause-overlay');
-            this.pauseOverlay.innerHTML = `
-                <div class="pause-container">
+            this.pauseOverlay.innerHTML = 
+                `<div class="pause-container">
                     <h2>PAUSA</h2>
                     <p>Premi 'P' per continuare</p>
                 </div>
@@ -50,13 +76,20 @@
             this.pauseOverlay.style.display = 'none';
         }
 
-        addPauseEventListener() {
-            document.addEventListener('keydown', (event) => {
-                const key = event.key.toLowerCase();
-                if (key === 'p') {
-                    this.togglePause();
+        addStartListener() {
+            const startKeyHandler = (event) => {
+                if (!this.isGameReady) {
+                    this.isGameReady = true;
+                    this.startOverlay.style.display = 'none';
+                    this.initializeGame();
+                    this.timer.start();
+                    
+                    // Rimuovi il listener dopo l'inizio del gioco
+                    document.removeEventListener('keydown', startKeyHandler);
                 }
-            });
+            };
+    
+            document.addEventListener('keydown', startKeyHandler);
         }
 
         togglePause() {
@@ -85,8 +118,9 @@
         }
 
         initializeGame() {
-            this.snake = new Snake(this, '👨', '👩');  // Passa l'istanza di Game
-
+            // Sposta qui l'inizializzazione del gioco che era nel metodo start()
+            this.snake = new Snake(this, '👨', '👩');
+            
             // Posizioni dei muri
             const wallPositions = [];
             for (let i = 0; i < NUM_ROWS; i++) {
@@ -97,13 +131,12 @@
                 wallPositions.push({ x: i, y: 0 });
                 wallPositions.push({ x: i, y: NUM_ROWS - 1 });
             }
-
+            
             this.food = new Food(this.snake.body, wallPositions);
             this.snake.placeOnBoard();
             this.food.placeOnBoard();
             this.score = 0;
             document.getElementById('score').textContent = this.score.toString().padStart(3, '0');
-
             this.startGameLoop();
         }
 
@@ -191,9 +224,10 @@
         
         
         restartGame() {
-            // Reset completo di tutti gli stati
+            // Modifiche al metodo esistente
             this.isGameOver = false;
             this.isPaused = false;
+            this.isGameReady = false;
     
             // Cancella tutti gli intervalli esistenti
             this.intervals.forEach(clearInterval);
@@ -207,11 +241,7 @@
             this.score = 0;
             document.getElementById('score').textContent = this.score.toString().padStart(3, '0');
     
-            // Ricrea completamente il gioco
-            this.snake = new Snake(this, '👨', '👩');
-            this.food = new Food(this.snake.body, []);
-    
-            this.timer.reset();
+            // Torna alla schermata iniziale
             this.start();
         }
     }
