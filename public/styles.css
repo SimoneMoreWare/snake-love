@@ -95,7 +95,7 @@ body {
 /* Media query per schermi piccoli (telefonini) */
 @media (max-width: 768px) {
     #game-board-container {
-        top: -10%; /* Valore per telefono */
+        top: -8%; /* Valore per telefono */
     }
 }
 
