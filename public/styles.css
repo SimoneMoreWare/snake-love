@@ -89,7 +89,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    top: -3%; /* Valore di default per PC */
+    top: 0%; /* Valore di default per PC */
 }
 
 /* Media query per schermi piccoli (telefonini) */

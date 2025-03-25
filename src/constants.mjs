@@ -2,7 +2,7 @@ export const NUM_ROWS = 21;
 export const NUM_COLS = 21;
 export const HEART_EMOJI = '❤️';
 // Imposta CELL_SIZE dinamicamente in base alla larghezza dello schermo
-export let CELL_SIZE = window.innerWidth < 768 || window.innerHeight < 768 ? '4vw' : '1.3vw';
+export let CELL_SIZE = window.innerWidth < 768 || window.innerHeight < 768 ? '1vw' : '1.3vw';
 export const SCORE = 10;
 
 /**
@@ -30,5 +30,5 @@ export const SOUND_LEVEL_UP_LIFE = '../assets/soundEffects/90s-game-ui-6-185099.
 export const SENSIBILITY = 0.0015;  // Sensibilità del joystick
 // Aggiungi un event listener per aggiornare CELL_SIZE quando la finestra viene ridimensionata
 window.addEventListener('resize', () => {
-    CELL_SIZE = window.innerWidth < 768 || window.innerHeight < 768 ? '4vw' : '1.3vw';
+    CELL_SIZE = window.innerWidth < 768 || window.innerHeight < 768 ? '1vw' : '1.3vw';
 });
