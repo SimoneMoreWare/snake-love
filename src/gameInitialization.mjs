@@ -213,17 +213,26 @@
             if (this.isGameOver) return;
             this.isPaused = false; // Assicurati che la pausa sia disattivata
             this.isGameOver = true;
-
+        
             this.timer.stop(); // Ferma il timer
         
-            // **Riproduce il suono quando il gioco finisce**
+            // Riproduce il suono quando il gioco finisce
             const sound = new Audio(SOUND_GAME_OVER);
             sound.play().catch(error => console.error("Errore nella riproduzione audio:", error));
         
-            // **Aspetta la durata del suono prima di mostrare l'alert**
+            // Mostra la modal dopo che il suono è finito
             sound.onended = () => {
-                alert('Game Over! 😢 Premi OK per riprovare.');
-                this.restartGame();
+                const modal = document.getElementById('game-over-modal');
+                const restartButton = document.getElementById('restart-button');
+        
+                // Mostra la modal
+                modal.style.display = 'flex';
+        
+                // Gestisci il click sul pulsante per riavviare il gioco
+                restartButton.addEventListener('click', () => {
+                    this.restartGame();
+                    modal.style.display = 'none'; // Nascondi la modal
+                });
             };
         }
         
