@@ -1,17 +1,18 @@
 .scores {
     display: flex;
-    position: relative;
-    top: 0%;
-    left: 1vw; /* Allinea il bordo sinistro con game-board */
-    width: calc(var(--num-cols) * var(--cell-size) * 1vw); /* Larghezza uguale a game-board */
-    max-width: 90vw; /* Evita che diventi troppo larga */
+    justify-content: space-between;
+    width: calc(var(--num-cols) * var(--cell-size));
+    max-width: 90vw;
+    padding: 5px;
 }
 
+
 #score, #highscore {
-    font-size: calc(1.5 * 1vw); /* Corretto l'errore di virgola in "1,5" */
+    font-size: clamp(18px, 5vw, 36px); /* Adatta la dimensione tra 18px e 36px */
     color: #333;
     font-weight: bold;
     font-family: 'Arcade', sans-serif;
+    margin: 5px 0;
 }
 
 #highscore {

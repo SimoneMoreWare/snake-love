@@ -73,6 +73,34 @@ export class JoystickController {
         self.touchId = null;
         self.active = false;
       }
+
+      function updateBasePosition() {
+        // Ottieni la dimensione ottimale del joystick in base allo schermo
+        const isLandscape = window.innerWidth > window.innerHeight;
+        const joystickSize = isLandscape 
+            ? Math.min(128, window.innerHeight * 0.2)
+            : Math.min(128, window.innerWidth * 0.3);
+        
+        // Aggiorna le dimensioni del joystick
+        const joystickContainer = document.getElementById('joystick-container');
+        if (joystickContainer) {
+            joystickContainer.style.width = `${joystickSize}px`;
+        }
+        
+        // Resetta la posizione dello stick
+        const stickElement = document.getElementById('stick');
+        if (stickElement) {
+            stickElement.style.transform = 'translate3d(0px, 0px, 0px)';
+            stickElement.style.left = '32px';
+            stickElement.style.top = '32px';
+        }
+        
+        // Aggiorna le variabili interne di posizione se necessario
+        if (this && this.stick) {
+            this.stick.style.transform = 'translate3d(0px, 0px, 0px)';
+            this.value = { x: 0, y: 0 };
+        }
+    }
   
       stick.addEventListener('mousedown', handleDown);
       stick.addEventListener('touchstart', handleDown);

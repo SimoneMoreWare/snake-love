@@ -2,3 +2,11 @@
     margin-top: 20px;
     text-align: center;
 }
+
+#stick {
+    position: absolute; 
+    left: 32px; 
+    top: 32px; 
+    transition: all 0.2s ease 0s;
+    transform: translate3d(0px, 0px, 0px);
+}

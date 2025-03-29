@@ -1,0 +1,7 @@
+#title {
+    font-size: clamp(24px, 6vw, 48px); /* Adatta il titolo tra 24px e 48px */
+    text-align: center;
+    color: #333;
+    font-family: "Arcade", sans-serif;
+    margin: 10px 0;
+}

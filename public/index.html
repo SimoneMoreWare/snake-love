@@ -1,53 +1,47 @@
-<html>
+<!DOCTYPE html>
+<html lang="it">
     <head>
         <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <title>Snake Love</title>
         <link rel="stylesheet" href="./css/styles.css">
         <link rel="icon" href="../assets/favicon_io/favicon.ico" type="image/x-icon">
         <link rel="preload" href="../assets/fonts/ARCADE.TTF" as="font" type="font/ttf" crossorigin="anonymous">
-        <script defer type="module" src="../src/index.mjs"></script> 
-        <!--<script defer src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.10/dayjs.min.js"></script>-->
+        <script defer type="module" src="../src/index.mjs"></script>
     </head>
     <body>
         <div id="game-board-container">
-            <br>
-            <header><h1 id="title">Snake Love 💖🐍 </h1></header>
-            <!--<h1 id="author">Created by Simo&Mary</h1>-->
+            <header>
+                <h1 id="title">Snake Love 💖🐍</h1>
+            </header>
             
-            <div>
+            <div class="game-content">
                 <div class="scores">
                     <h1 id="score">000</h1>
                     <h1 id="highscore">000</h1>
                 </div>
-                <div id="game-board-container">
-                    
-                    <div id="game-board"></div>
-                </div>
-                <br>
-                <span id="timer">00:00</span>
-            </div>
-
-
-            <div id="game-over-modal" class="modal">
-                <div class="modal-content">
-                    <h2>Game Over! 😢</h2>
-                    <p>Premi il pulsante sotto per riprovare!</p>
-                    <button id="restart-button">Riprendi Gioco</button>
+                
+                <div id="game-board"></div>
+                
+                <div class="game-info">
+                    <span id="timer">00:00</span>
                 </div>
             </div>
             
-
-             <!-- Joystick div posizionato sotto -->
-            <div id="joystick-container" style="width: 128px; position: relative; margin-top: 20px; left: 10px;">
-                <img src="../assets/joystick-base.png">
-                <div id="stick" style="position: absolute; left: 32px; top: 32px; transition: all 0.2s ease 0s; transform: translate3d(0px, 0px, 0px);">
-                    <img src="../assets/joystick-red.png">
+            <div id="joystick-container">
+                <img src="../assets/joystick-base.png" alt="Joystick Base">
+                <div id="stick">
+                    <img src="../assets/joystick-red.png" alt="Joystick Stick">
                 </div>
-                <!--<h1 id="instruction-text">Press Spacebar to start</h1>-->
             </div>
-
         </div>
         
+        <div id="game-over-modal" class="modal">
+            <div class="modal-content">
+                <h2>Game Over! 😢</h2>
+                <p>Premi il pulsante sotto per riprovare!</p>
+                <button id="restart-button">Riprendi Gioco</button>
+            </div>
+        </div>
     </body>
 </html>

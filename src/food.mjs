@@ -74,4 +74,15 @@ export class Food {
     this.removeFromBoard();
     this.placeOnBoard();
   }
+
+  updateRendering() {
+    // Rimuovi l'elemento cibo esistente
+    const existingFood = document.querySelector('.food');
+    if (existingFood) {
+        existingFood.remove();
+    }
+    
+    // Riposiziona il cibo
+    this.placeOnBoard();
+}
 }

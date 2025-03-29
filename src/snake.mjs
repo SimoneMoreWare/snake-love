@@ -94,6 +94,17 @@ export class Snake {
 
     this.placeOnBoard();
   }
+
+    updateRendering() {
+      // Rimuovi tutti gli elementi del serpente dal DOM
+      const existingElements = document.querySelectorAll('.snake-head, .snake-body');
+      existingElements.forEach(element => {
+          element.remove();
+      });
+      
+      // Riposiziona gli elementi del serpente
+      this.placeOnBoard();
+  }
 }
 
 // Funzione per pescare una emoji casuale dalla lista BODY_EMOJIS
