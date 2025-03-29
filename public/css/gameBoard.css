@@ -1,0 +1,30 @@
+#game-board {
+    display: grid;
+    grid-template-columns: repeat(var(--num-cols), calc(var(--cell-size) * 1vw));
+    grid-template-rows: repeat(var(--num-rows), calc(var(--cell-size) * 1vw));
+    margin: calc(5 * 0vw); /* Margin scalato in base alla larghezza della finestra */
+}
+
+#game-board-container {
+    position: relative;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 0%; /* Valore di default per PC */
+}
+
+/* Media query per schermi piccoli (telefonini) */
+@media (max-width: 768px) {
+    #game-board-container {
+        top: -8%; /* Valore per telefono */
+    }
+}
+
+/* Media query per schermi più grandi (tablet o PC) */
+@media (min-width: 769px) {
+    #game-board-container {
+        top: -3%; /* Valore per PC */
+    }
+}

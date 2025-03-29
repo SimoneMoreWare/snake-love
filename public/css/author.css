@@ -1,0 +1,10 @@
+
+#author {
+    position: relative;
+    top: 5%;
+    width: 70vw;
+    text-align: center;
+    text-transform: capitalize;
+    color: #333;
+    font-size: calc(1.5 * 0.5vw); /* Font-size scalato in base alla larghezza della finestra */
+}

@@ -1,0 +1,12 @@
+#timer {
+    position: relative;
+    top: 5%;
+    left: 1vw;
+    width: 70vw;
+    text-align: center;
+    text-transform: capitalize;
+    font-weight: bold;
+    font-family: 'Arcade', sans-serif;  
+    color: #333;
+    font-size: calc(1.5 * 1vw); /* Font-size scalato in base alla larghezza della finestra */
+}

@@ -1,0 +1,12 @@
+#instruction-text {
+    position: absolute;
+    top: 85%;
+    width: 50vw;
+    text-align: center;
+    text-transform: capitalize;
+    padding: calc(1 * 1vw); /* Padding scalato in base alla larghezza della finestra */
+    margin: calc(1 * 1vw); /* Margin scalato in base alla larghezza della finestra */
+    color: #333;
+    font-size: calc(1.5 * 1vw); /* Font-size scalato in base alla larghezza della finestra */
+    margin-top: calc(1 * 1vw); /* Margin-top scalato in base alla larghezza della finestra */
+}

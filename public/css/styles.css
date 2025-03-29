@@ -1,0 +1,52 @@
+@import url('./author.css');
+@import url('./gameBoard.css');
+@import url('./instructionText.css');
+@import url('./joystick.css');
+@import url('./modal.css');
+@import url('./pause.css');
+@import url('./restart.css');
+@import url('./score.css');
+@import url('./start.css');
+@import url('./title.css');
+@import url('./timer.css');
+
+@font-face {
+    font-family: 'Arcade';
+    src: url('../../assets/fonts/ARCADE.TTF') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html {
+    overflow: hidden;
+    height: 100%;
+    touch-action: none; /* Disabilita lo scrolling e il pinch zoom */
+}
+
+body {
+    background-color: #FFCCE5;      /* Romantic background color */
+    font-family: "Arcade", sans-serif;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    touch-action: none; /* Disabilita lo scrolling e il pinch zoom */
+    overflow: hidden; /* Disabilita lo scrolling */
+}
+
+/* Migliora la leggibilità su smartphone (schermo più piccolo di 768px) */
+@media screen and (max-width: 768px), (max-height: 768px) {
+    #score, #highscore, #instruction-text, #author, #timer {
+        font-size: calc(4 * 0.5vw); /* Testo più grande */
+    }
+    #title{
+        font-size: calc(4 * 0.5vw); /* Testo molto grande */
+    }
+}
+
+
+
+

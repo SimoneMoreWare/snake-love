@@ -1,0 +1,19 @@
+.scores {
+    display: flex;
+    position: relative;
+    top: 0%;
+    left: 1vw; /* Allinea il bordo sinistro con game-board */
+    width: calc(var(--num-cols) * var(--cell-size) * 1vw); /* Larghezza uguale a game-board */
+    max-width: 90vw; /* Evita che diventi troppo larga */
+}
+
+#score, #highscore {
+    font-size: calc(1.5 * 1vw); /* Corretto l'errore di virgola in "1,5" */
+    color: #333;
+    font-weight: bold;
+    font-family: 'Arcade', sans-serif;
+}
+
+#highscore {
+    display: none;
+}
