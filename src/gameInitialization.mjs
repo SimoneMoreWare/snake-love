@@ -303,28 +303,26 @@ export class Game {
     
         this.timer.stop(); // Ferma il timer
     
-        // Riproduce il suono quando il gioco finisce
+        // Riproduce il suono quando il gioco finisce (ma non blocca la logica del game over)
         const sound = new Audio(SOUND_GAME_OVER);
         sound.play().catch(error => console.error("Errore nella riproduzione audio:", error));
     
-        // Mostra la modal dopo che il suono è finito
-        sound.onended = () => {
-            const modal = document.getElementById('game-over-modal');
-            const restartButton = document.getElementById('restart-button');
+        // Mostra la modal immediatamente (non aspetta la fine del suono)
+        const modal = document.getElementById('game-over-modal');
+        const restartButton = document.getElementById('restart-button');
+        
+        modal.style.display = 'flex'; // Mostra la modal subito
     
-            // Mostra la modal
-            modal.style.display = 'flex';
-    
-            // Gestisci il click sul pulsante per riavviare il gioco
-            const restartClickHandler = () => {
-                this.restartGame();
-                modal.style.display = 'none'; // Nascondi la modal
-                restartButton.removeEventListener('click', restartClickHandler);
-            };
-            
-            restartButton.addEventListener('click', restartClickHandler);
+        // Gestisci il click sul pulsante per riavviare il gioco
+        const restartClickHandler = () => {
+            this.restartGame();
+            modal.style.display = 'none'; // Nascondi la modal
+            restartButton.removeEventListener('click', restartClickHandler);
         };
+        
+        restartButton.addEventListener('click', restartClickHandler);
     }
+    
     
     // Aggiungi questo metodo per riavviare il gioco e azzerare il timer
     restartGame() {
