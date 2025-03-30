@@ -1,3 +1,4 @@
+
 #joystick-container {
     margin-top: 20px;
     text-align: center;
@@ -7,12 +8,10 @@
     aspect-ratio: 1 / 1; /* Mantiene la proporzione quadrata */
     display: inline-block;
 }
-
 #joystick-container img {
     width: 100%;
     height: auto;
 }
-
 #stick {
     position: absolute;
     left: 50%;
@@ -22,13 +21,11 @@
     transform: translate(-50%, -50%);
     transition: all 0.2s ease;
 }
-
 /* Media query per telefoni in orizzontale */
 @media (max-width: 600px) and (orientation: landscape) {
     #joystick-container {
         width: 30vw; /* Riduci la dimensione su schermi piccoli */
     }
-
     #stick {
         width: 25%; /* Riduci leggermente lo stick */
     }
