@@ -5,3 +5,11 @@
     font-family: 'Arcade', sans-serif;
     margin: 5px 0;
 }
+
+/* Migliora la leggibilità su smartphone (max-width: 768px) */
+@media screen and (max-width: 768px), (max-height: 768px) {
+    #timer {
+        font-size: clamp(16px, 6vw, 32px); /* Aumenta la leggibilità su schermi piccoli */
+    }
+
+}

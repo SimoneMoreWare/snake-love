@@ -42,3 +42,29 @@
         top: -3%; /* Valore per PC */
     }
 }
+
+@media (orientation: landscape) {
+    #game-board-container {
+        max-width: 100vw;  /* Limita la larghezza del contenitore */
+        height: auto;      /* Permetti l'altezza dinamica */
+    }
+    
+    .game-info {
+        display: flex;
+        flex-direction: column;
+        margin-left: 20px;
+    }
+    
+}
+
+
+@media (orientation: portrait) {
+    #game-board-container {
+        flex-direction: column;
+    }
+    
+    .game-info {
+        text-align: center;
+        width: 100%;
+    }
+}

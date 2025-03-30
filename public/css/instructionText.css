@@ -10,3 +10,10 @@
     font-size: calc(1.5 * 1vw); /* Font-size scalato in base alla larghezza della finestra */
     margin-top: calc(1 * 1vw); /* Margin-top scalato in base alla larghezza della finestra */
 }
+
+/* Migliora la leggibilità su smartphone (max-width: 768px) */
+@media screen and (max-width: 768px), (max-height: 768px) {
+    #instruction-text {
+        font-size: clamp(16px, 6vw, 32px); /* Aumenta la leggibilità su schermi piccoli */
+    }
+}

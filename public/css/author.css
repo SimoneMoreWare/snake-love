@@ -8,3 +8,10 @@
     color: #333;
     font-size: calc(1.5 * 0.5vw); /* Font-size scalato in base alla larghezza della finestra */
 }
+
+/* Migliora la leggibilità su smartphone (max-width: 768px) */
+@media screen and (max-width: 768px), (max-height: 768px) {
+    #author {
+        font-size: clamp(16px, 6vw, 32px); /* Aumenta la leggibilità su schermi piccoli */
+    }
+}

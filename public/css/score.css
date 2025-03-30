@@ -18,3 +18,10 @@
 #highscore {
     display: none;
 }
+
+@media screen and (max-width: 768px), (max-height: 768px) {
+    #score,  #highscore {
+        font-size: clamp(16px, 6vw, 32px); /* Aumenta la leggibilità su schermi piccoli */
+    }
+
+}

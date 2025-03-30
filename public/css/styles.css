@@ -47,59 +47,13 @@ body {
     box-sizing: border-box;
 }
 
-/* Migliora la leggibilità su smartphone (max-width: 768px) */
-@media screen and (max-width: 768px), (max-height: 768px) {
-    #score, #highscore, #instruction-text, #author, #timer {
-        font-size: clamp(16px, 6vw, 32px); /* Aumenta la leggibilità su schermi piccoli */
-    }
-
-    #title {
-        font-size: clamp(28px, 7vw, 52px); /* Titolo più leggibile */
-    }
-}
-
-@media (orientation: landscape) {
-    #game-board-container {
-        max-width: 100vw;  /* Limita la larghezza del contenitore */
-        height: auto;      /* Permetti l'altezza dinamica */
-    }
-    
-    .game-info {
-        display: flex;
-        flex-direction: column;
-        margin-left: 20px;
-    }
-
-    #title {
-        writing-mode: vertical-rl;
-        text-orientation: mixed;
-        transform: rotate(180deg);
-        margin-right: 10px;
-    }
-}
-
-
-@media (orientation: portrait) {
-    #game-board-container {
-        flex-direction: column;
-    }
-    
-    .game-info {
-        text-align: center;
-        width: 100%;
-    }
-}
-
 /* Adattamenti per dispositivi molto piccoli */
 @media (max-width: 320px), (max-height: 320px) {
     :root {
         --font-size-base: 12px;
     }
-
-    #title {
-        font-size: clamp(20px, 8vw, 36px);
-    }
 }
+
 /* Adattamenti per dispositivi molto grandi */
 @media (min-width: 1200px) and (min-height: 800px) {
     :root {

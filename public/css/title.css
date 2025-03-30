@@ -5,3 +5,29 @@
     font-family: "Arcade", sans-serif;
     margin: 10px 0;
 }
+
+
+/* Migliora la leggibilità su smartphone (max-width: 768px) */
+@media screen and (max-width: 768px), (max-height: 768px) {
+
+    #title {
+        font-size: clamp(28px, 7vw, 52px); /* Titolo più leggibile */
+    }
+}
+
+@media (orientation: landscape) {
+
+    #title {
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        transform: rotate(180deg);
+        margin-right: 10px;
+    }
+}
+
+/* Adattamenti per dispositivi molto piccoli */
+@media (max-width: 320px), (max-height: 320px) {
+    #title {
+        font-size: clamp(15px, 6vw, 36px);
+    }
+}
