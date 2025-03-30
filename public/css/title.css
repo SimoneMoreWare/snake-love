@@ -3,7 +3,7 @@
     text-align: center;
     color: #333;
     font-family: "Arcade", sans-serif;
-    margin: 10px 0;
+    margin: 15px 0;
 }
 
 
@@ -21,7 +21,18 @@
         writing-mode: vertical-rl;
         text-orientation: mixed;
         transform: rotate(180deg);
-        margin-right: 10px;
+        margin-right: 5px;
+        font-size: clamp(24px, 6vh, 48px); /* Adatta il titolo tra 24px e 48px */
+    }
+}
+
+@media (orientation: portrait) {
+    #title {
+        writing-mode: horizontal-tb;
+        text-orientation: mixed;
+        transform: rotate(0deg);
+        margin-right: 0px;  
+        margin-top: 15vh; /* Aggiunta di un margine superiore per il titolo in orientamento verticale */
     }
 }
 

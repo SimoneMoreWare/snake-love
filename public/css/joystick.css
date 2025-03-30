@@ -1,12 +1,35 @@
 #joystick-container {
     margin-top: 20px;
     text-align: center;
+    position: relative;
+    width: 40vw; /* Adatta alla larghezza dello schermo */
+    max-width: 200px; /* Evita che diventi troppo grande */
+    aspect-ratio: 1 / 1; /* Mantiene la proporzione quadrata */
+    display: inline-block;
+}
+
+#joystick-container img {
+    width: 100%;
+    height: auto;
 }
 
 #stick {
-    position: absolute; 
-    left: 32px; 
-    top: 32px; 
-    transition: all 0.2s ease 0s;
-    transform: translate3d(0px, 0px, 0px);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 30%;
+    height: auto;
+    transform: translate(-50%, -50%);
+    transition: all 0.2s ease;
+}
+
+/* Media query per telefoni in orizzontale */
+@media (max-width: 600px) and (orientation: landscape) {
+    #joystick-container {
+        width: 30vw; /* Riduci la dimensione su schermi piccoli */
+    }
+
+    #stick {
+        width: 25%; /* Riduci leggermente lo stick */
+    }
 }
