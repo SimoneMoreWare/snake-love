@@ -11,52 +11,52 @@
 @import url('./timer.css');
 
 @font-face {
-    font-family: 'Arcade';
-    src: url('../../assets/fonts/ARCADE.TTF') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+  font-family: Arcade;
+  src: url('../../assets/fonts/ARCADE.TTF') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 
 :root {
-    --font-size-base: 16px;
-    --game-board-size: min(80vw, 80vh);
+  --font-size-base: 16px;
+  --game-board-size: min(80vw, 80vh);
 }
 
 html {
-    overflow: hidden;
-    height: 100%;
-    touch-action: none; /* Disabilita lo scrolling e il pinch zoom */
+  overflow: hidden;
+  height: 100%;
+  touch-action: none; /* Disabilita lo scrolling e il pinch zoom */
 }
 
 body {
-    background-color: #FFCCE5;
-    font-family: "Arcade", sans-serif;
-    color: #333;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    width: 100vw;
-    margin: 0;
-    padding: 0;
-    touch-action: none;
-    overflow: hidden;
+  background-color: #ffcce5;
+  font-family: Arcade, sans-serif;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  touch-action: none;
+  overflow: hidden;
 }
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 /* Adattamenti per dispositivi molto piccoli */
-@media (max-width: 320px), (max-height: 320px) {
-    :root {
-        --font-size-base: 12px;
-    }
+@media (width <= 320px), (height <= 320px) {
+  :root {
+    --font-size-base: 12px;
+  }
 }
 
 /* Adattamenti per dispositivi molto grandi */
-@media (min-width: 1200px) and (min-height: 800px) {
-    :root {
-        --font-size-base: 20px;
-    }
+@media (width >= 1200px) and (height >= 800px) {
+  :root {
+    --font-size-base: 20px;
+  }
 }

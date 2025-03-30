@@ -1,3 +1,18 @@
 # Esempio di aggiunta di file al .gitignore
 node_modules/
 *.log
+
+# Configurazioni degli strumenti di linting e formattazione
+.eslintrc.json
+.htmlhintrc
+.prettierrc
+.stylelintrc.json
+eslint.config.mjs
+
+
+# Ignora tutti i file di configurazione linting/formattazione
+*.eslintrc*
+*.stylelintrc*
+*.prettierrc*
+eslint.config.*
+.htmlhintrc

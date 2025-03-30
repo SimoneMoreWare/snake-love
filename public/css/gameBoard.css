@@ -1,70 +1,75 @@
 #game-board {
-    display: grid;
-    grid-template-columns: repeat(var(--num-cols), var(--cell-size));
-    grid-template-rows: repeat(var(--num-rows), var(--cell-size));
-    width: calc(var(--num-cols) * var(--cell-size));
-    height: calc(var(--num-rows) * var(--cell-size));
-    margin: 0 auto;
-    box-shadow: 0 0 0 0 10px rgba(0,0,0,0.1);
-    border-radius: 5px;
+  display: grid;
+  grid-template-columns: repeat(var(--num-cols), var(--cell-size));
+  grid-template-rows: repeat(var(--num-rows), var(--cell-size));
+  width: calc(var(--num-cols) * var(--cell-size));
+  height: calc(var(--num-rows) * var(--cell-size));
+  margin: 0 auto;
+  box-shadow: 0 0 0 0 rgb(0 0 0 / 10%);
+  border-radius: 5px;
 }
 
 /* Applica lo sfondo alle celle della griglia */
 #game-board > div {
-    background-color: rgba(255, 255, 255, 0.3); /* Sostituisci con il tuo colore preferito */
-    border-radius: 5px;
+  background-color: rgb(
+    255
+    255
+    255 /
+    30%
+  ); /* Sostituisci con il tuo colore preferito */
+
+  border-radius: 5px;
 }
+
 #game-board-container {
-    position: relative;
-    margin: 0;
-    padding: 0;
-    border: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    max-width: 100vw;
-    max-height: 100vh;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  max-width: 100vw;
+  max-height: 100vh;
 }
 
 /* Media query per schermi piccoli (telefonini) */
-@media (max-width: 768px) {
-    #game-board-container {
-        top: -8%; /* Valore per telefono */
-    }
+@media (width <= 768px) {
+  #game-board-container {
+    top: -8%; /* Valore per telefono */
+  }
 }
 
 /* Media query per schermi più grandi (tablet o PC) */
-@media (min-width: 769px) {
-    #game-board-container {
-        top: -3%; /* Valore per PC */
-    }
+@media (width >= 769px) {
+  #game-board-container {
+    top: -3%; /* Valore per PC */
+  }
 }
 
 @media (orientation: landscape) {
-    #game-board-container {
-        max-width: 100vw;  /* Limita la larghezza del contenitore */
-        height: auto;      /* Permetti l'altezza dinamica */
-    }
-    
-    .game-info {
-        display: flex;
-        flex-direction: column;
-        margin-left: 20px;
-    }
-    
+  #game-board-container {
+    max-width: 100vw; /* Limita la larghezza del contenitore */
+    height: auto; /* Permetti l'altezza dinamica */
+  }
+
+  .game-info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+  }
 }
 
-
 @media (orientation: portrait) {
-    #game-board-container {
-        flex-direction: column;
-    }
-    
-    .game-info {
-        text-align: center;
-        width: 100%;
-    }
+  #game-board-container {
+    flex-direction: column;
+  }
+
+  .game-info {
+    text-align: center;
+    width: 100%;
+  }
 }

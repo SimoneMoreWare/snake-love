@@ -1,44 +1,57 @@
 #timer {
-    font-size: calc(var(--font-size-base) * 1.2);
-    color: #333;
-    font-weight: bold;
-    font-family: 'Arcade', sans-serif;
-    margin: 5px 0;
+  font-size: clamp(
+    18px,
+    5vw,
+    36px
+  ); /* Ridimensiona dinamicamente in base alla larghezza dello schermo */
+
+  color: #333;
+  font-weight: bold;
+  font-family: Arcade, sans-serif;
+  margin: 5px 0;
 }
 
 /* Migliora la leggibilità su smartphone (max-width: 768px) */
-@media screen and (max-width: 768px), (max-height: 768px) {
-    #timer {
-        font-size: clamp(16px, 6vw, 32px); /* Aumenta la leggibilità su schermi piccoli */
-    }
-}
-
-/* Aggiungi regole per il timer simili al titolo, con maggiore flessibilità */
-#timer {
-    font-size: clamp(18px, 5vw, 36px); /* Ridimensiona dinamicamente in base alla larghezza dello schermo */
+@media screen and (width <= 768px), (height <= 768px) {
+  #timer {
+    font-size: clamp(
+      16px,
+      6vw,
+      32px
+    ); /* Aumenta la leggibilità su schermi piccoli */
+  }
 }
 
 /* Migliora la leggibilità su dispositivi con orientamento orizzontale */
 @media (orientation: landscape) {
-    #timer {
-        font-size: clamp(20px, 6vh, 40px); /* In landscape, il font è un po' più grande */
-        text-align: center; /* Centra il timer in landscape */
-        margin-right: 5px; /* Aggiunge un po' di margine a destra */
-    }
+  #timer {
+    font-size: clamp(
+      20px,
+      6vh,
+      40px
+    ); /* In landscape, il font è un po' più grande */
+
+    text-align: center; /* Centra il timer in landscape */
+    margin-right: 5px; /* Aggiunge un po' di margine a destra */
+  }
 }
 
 /* Miglioramenti per orientamento verticale */
 @media (orientation: portrait) {
-    #timer {
-        font-size: clamp(18px, 5vw, 36px); /* Font adatto a schermi verticali */
-        text-align: center; /* Centra il testo in verticale */
-        margin-top: 15vh; /* Aggiunge spazio sopra il timer per separarlo da altri elementi */
-    }
+  #timer {
+    font-size: clamp(18px, 5vw, 36px); /* Font adatto a schermi verticali */
+    text-align: center; /* Centra il testo in verticale */
+    margin-top: 15vh; /* Aggiunge spazio sopra il timer per separarlo da altri elementi */
+  }
 }
 
 /* Adattamenti per dispositivi molto piccoli */
-@media (max-width: 320px), (max-height: 320px) {
-    #timer {
-        font-size: clamp(14px, 6vw, 28px); /* Riduci la dimensione su schermi molto piccoli */
-    }
+@media (width <= 320px), (height <= 320px) {
+  #timer {
+    font-size: clamp(
+      14px,
+      6vw,
+      28px
+    ); /* Riduci la dimensione su schermi molto piccoli */
+  }
 }

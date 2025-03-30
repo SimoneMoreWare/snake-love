@@ -1,65 +1,78 @@
 .scores {
-    display: flex;
-    justify-content: space-between;
-    width: calc(var(--num-cols) * var(--cell-size));
-    max-width: 90vw;
-    padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  width: calc(var(--num-cols) * var(--cell-size));
+  max-width: 90vw;
+  padding: 5px;
 }
 
-#score, #highscore {
-    font-size: calc(var(--font-size-base) * 1.2);
-    color: #333;
-    font-weight: bold;
-    font-family: 'Arcade', sans-serif;
-    margin: 5px 0;
+#score,
+#highscore {
+  font-size: calc(var(--font-size-base) * 1.2);
+  color: #333;
+  font-weight: bold;
+  font-family: Arcade, sans-serif;
+  margin: 5px 0;
 }
 
 #highscore {
-    display: none;
+  display: none;
 }
 
-@media screen and (max-width: 768px), (max-height: 768px) {
-    #score, #highscore {
-        font-size: clamp(16px, 6vw, 32px); /* Aumenta la leggibilità su schermi piccoli */
-    }
+@media screen and (width <= 768px), (height <= 768px) {
+  #score,
+  #highscore {
+    font-size: clamp(
+      16px,
+      6vw,
+      32px
+    ); /* Aumenta la leggibilità su schermi piccoli */
+  }
 }
 
 /* Aggiungi qui altre regole responsivi per i punteggi */
 #score {
-    font-size: clamp(18px, 5vw, 36px); /* Adatta la dimensione del punteggio */
-    color: #444;
+  font-size: clamp(18px, 5vw, 36px); /* Adatta la dimensione del punteggio */
+  color: #444;
 }
 
 /* Regole specifiche per schermi in orientamento landscape */
 @media (orientation: landscape) {
-    .scores {
-        flex-direction: row; /* Disposizione orizzontale per landscape */
-        width: calc(var(--num-cols) * var(--cell-size) + 20px);
-    }
+  .scores {
+    flex-direction: row; /* Disposizione orizzontale per landscape */
+    width: calc(var(--num-cols) * var(--cell-size) + 20px);
+  }
 
-    #score, #highscore {
-        font-size: clamp(18px, 5vw, 36px); /* Font più grande su landscape */
-    }
+  #score,
+  #highscore {
+    font-size: clamp(18px, 5vw, 36px); /* Font più grande su landscape */
+  }
 }
 
 /* Regole specifiche per dispositivi molto piccoli */
-@media (max-width: 480px), (max-height: 480px) {
-    #score, #highscore {
-        font-size: clamp(14px, 6vw, 28px); /* Riduci la dimensione su schermi davvero piccoli */
-    }
+@media (width <= 480px), (height <= 480px) {
+  #score,
+  #highscore {
+    font-size: clamp(
+      14px,
+      6vw,
+      28px
+    ); /* Riduci la dimensione su schermi davvero piccoli */
+  }
 
-    .scores {
-        padding: 3px; /* Riduci il padding sui dispositivi piccoli */
-    }
+  .scores {
+    padding: 3px; /* Riduci il padding sui dispositivi piccoli */
+  }
 }
 
 /* Aggiungi regole per il punteggio e l'alta-scorre in modalità portrait */
 @media (orientation: portrait) {
-    #score, #highscore {
-        font-size: clamp(18px, 5vw, 36px); /* Punteggio facilmente leggibile */
-    }
+  #score,
+  #highscore {
+    font-size: clamp(18px, 5vw, 36px); /* Punteggio facilmente leggibile */
+  }
 
-    .scores {
-        padding: 10px 0; /* Più spazio tra le voci dei punteggi */
-    }
+  .scores {
+    padding: 10px 0; /* Più spazio tra le voci dei punteggi */
+  }
 }
