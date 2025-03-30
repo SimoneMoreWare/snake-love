@@ -2,15 +2,14 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    right: 0;
+    bottom: 0;
     background-color: rgba(0, 0, 0, 0.7);
-    display: none;
+    display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 1500; /* Assicurati che questo valore sia più basso dello z-index del pulsante pausa */
 }
-
 .pause-container {
     background-color: white;
     padding: 2rem;
@@ -28,4 +27,9 @@
 .pause-container p {
     font-size: 1.2rem;
     color: #666;
+}
+
+/* Assicurati che il pulsante di pausa abbia un z-index più alto */
+#pause-button {
+    z-index: 2000 !important;
 }

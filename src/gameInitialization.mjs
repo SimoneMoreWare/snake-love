@@ -8,6 +8,7 @@ import { SENSIBILITY } from './constants.mjs';
 import { Timer } from './timer.mjs';
 import { adjustStyles } from './adjustStyles.mjs';
 import { setupFullscreenAndOrientation } from './fullscreen.mjs';
+import { setupPauseButton } from './pauseScreen.mjs';
 
 export class Game {
     constructor() {
@@ -18,14 +19,16 @@ export class Game {
         this.score = 0;
         this.intervals = [];
         this.isPaused = false;
+        this.isGameOver = false;
         this.pauseOverlay = null;
         this.startOverlay = null;
         this.isGameReady = false;
         // Bind del metodo per mantenere il contesto corretto
         this.handleKeyDown = this.handleKeyDown.bind(this);
         this.handleScreenResize = this.handleScreenResize.bind(this);
+        this.togglePause = this.togglePause.bind(this);
     }
-
+    
     start() {
         // Applica le ottimizzazioni responsive
         this.setupResponsiveLayout();
@@ -44,6 +47,9 @@ export class Game {
         
         // Configura fullscreen e orientamento
         setupFullscreenAndOrientation();
+        
+        // Configura il pulsante pausa passando l'istanza attuale del gioco
+        setupPauseButton(this);
         
         // Aggiungi ascoltatore per il ridimensionamento
         window.addEventListener('resize', this.handleScreenResize);
@@ -66,13 +72,12 @@ export class Game {
             this.joystick.updateBasePosition();
         }
     }
-
+    
     createStartOverlay() {
         // Rimuovi eventuali overlay esistenti
         if (this.startOverlay) {
             this.startOverlay.remove();
         }
-
         this.startOverlay = document.createElement('div');
         this.startOverlay.id = 'start-overlay';
         this.startOverlay.classList.add('start-overlay');
@@ -92,7 +97,7 @@ export class Game {
         `;
         document.body.appendChild(this.startOverlay);
     }
-
+    
     createPauseOverlay() {
         // Se l'overlay già esiste, rimuovilo
         if (this.pauseOverlay) {
@@ -101,16 +106,29 @@ export class Game {
         this.pauseOverlay = document.createElement('div');
         this.pauseOverlay.id = 'pause-overlay';
         this.pauseOverlay.classList.add('pause-overlay');
+        
+        // Imposta uno z-index inferiore a quello del pulsante pausa
+        this.pauseOverlay.style.zIndex = '1500';
+        
         this.pauseOverlay.innerHTML = 
             `<div class="pause-container">
                 <h2>PAUSA</h2>
-                <p>Premi 'P' per continuare</p>
+                <p>Premi 'P' o il pulsante Pausa per continuare</p>
             </div>
         `;
+        
+        // Aggiungi anche un listener per i clic sull'overlay di pausa
+        this.pauseOverlay.addEventListener('click', (event) => {
+            // Ignora i clic sull'overlay stesso, solo sul contenuto
+            if (event.target === this.pauseOverlay) {
+                this.togglePause();
+            }
+        });
+        
         document.body.appendChild(this.pauseOverlay);
         this.pauseOverlay.style.display = 'none';
     }
-
+    
     addStartListener() {
         const startHandler = () => {
             if (!this.isGameReady) {
@@ -128,32 +146,52 @@ export class Game {
         document.addEventListener('keydown', startHandler);
         document.addEventListener('touchstart', startHandler); // Aggiunto supporto touch
     }
-
+    
+    // Metodo per gestire lo stato di pausa
+    // Modificato per essere più robusto
     togglePause() {
         // Non permettere pausa se il gioco è finito
         if (this.isGameOver) return;
-
+    
         this.isPaused = !this.isPaused;
-        
+    
         if (this.isPaused) {
             // Metti in pausa
             this.pauseOverlay.style.display = 'flex';
             this.intervals.forEach(clearInterval);
-            this.timer.stop();
+            this.timer.stop();  // Ferma il timer
         } else {
             // Riprendi
             this.pauseOverlay.style.display = 'none';
-            this.startGameLoop();
-            this.timer.start();
+            this.startGameLoop();  // Riprendi il ciclo del gioco
+    
+            // Avvia il timer se non è già avviato
+            if (this.timer.timerInterval === null) {
+                this.timer.start();  // Riprende dal tempo precedente
+            }
+        }
+    
+        // Aggiorna il testo del pulsante pausa se esiste
+        const pauseButton = document.getElementById('pause-button');
+        if (pauseButton) {
+            pauseButton.innerHTML = this.isPaused ? '▶️ Riprendi' : '⏸️ Pausa';
         }
     }
-
+    
+    // Metodo di pubblica utilità per aggiornare lo stato di pausa
+    // Utile per il pulsante di pausa
+    onPauseStateChanged(isPaused) {
+        if (this.isPaused !== isPaused) {
+            this.togglePause();
+        }
+    }
+    
     resetBoard() {
         document.getElementById('game-board').innerHTML = ''; 
         createGameBoard();
         addHeartsToBorders();
     }
-
+    
     initializeGame() {
         // Sposta qui l'inizializzazione del gioco che era nel metodo start()
         this.snake = new Snake(this, '👨', '👩');
@@ -176,7 +214,7 @@ export class Game {
         document.getElementById('score').textContent = this.score.toString().padStart(3, '0');
         this.startGameLoop();
     }
-
+    
     startGameLoop() {
         this.intervals.forEach(clearInterval);
         this.intervals = [];
@@ -191,7 +229,7 @@ export class Game {
                 }
             }
         }, MOVEMENT_INTERVAL));
-
+        
         // Controllo cibo
         this.intervals.push(setInterval(() => {
             if (!this.isPaused && !this.isGameOver) {
@@ -210,12 +248,11 @@ export class Game {
                         const levelUpSound = new Audio(SOUND_LEVEL_UP_LIFE);
                         levelUpSound.play().catch(error => console.error("Errore nella riproduzione audio:", error));
                     }
-                    
                 }
             }
         }, FOOD_CHECK_INTERVAL));
     }
-
+    
     // Metodo centralizzato per gestire tutti i keydown
     handleKeyDown(event) {
         const key = event.key.toLowerCase();
@@ -235,7 +272,7 @@ export class Game {
         else if (key === 'arrowleft' || key === 'a') this.snake.changeDirection('LEFT');
         else if (key === 'arrowright' || key === 'd') this.snake.changeDirection('RIGHT');
     }
-
+    
     addEventListeners() {
         // Rimuovi eventuali listener precedenti per evitare duplicazioni
         document.removeEventListener('keydown', this.handleKeyDown);
@@ -248,7 +285,7 @@ export class Game {
             }, 200);
         });
     }
-
+    
     updateDirectionWithJoystick() {
         if (Math.abs(this.joystick.value.x) > Math.abs(this.joystick.value.y)) {
             if (this.joystick.value.x > SENSIBILITY) this.snake.changeDirection('RIGHT');
@@ -258,7 +295,7 @@ export class Game {
             else if (this.joystick.value.y < -SENSIBILITY) this.snake.changeDirection('UP');
         }
     }
-
+    
     handleGameOver() {
         if (this.isGameOver) return;
         this.isPaused = false; // Assicurati che la pausa sia disattivata
@@ -294,19 +331,15 @@ export class Game {
         this.isGameOver = false;
         this.isPaused = false;
         this.isGameReady = false;
-
         // Cancella tutti gli intervalli esistenti
         this.intervals.forEach(clearInterval);
         this.intervals = [];
-
         // Reset overlay
         if (this.pauseOverlay) {
             this.pauseOverlay.style.display = 'none';
         }
-
         this.score = 0;
         document.getElementById('score').textContent = this.score.toString().padStart(3, '0');
-
         // Torna alla schermata iniziale
         this.start();
     }
