@@ -28,11 +28,11 @@ export function setupFullscreenAndOrientation() {
       if (window.innerWidth > window.innerHeight) {
         screen.orientation
           .lock('landscape')
-          .catch((e) => console.log('Orientation lock not supported'))
+          .catch(() => console.log('Orientation lock not supported'))
       } else {
         screen.orientation
           .lock('portrait')
-          .catch((e) => console.log('Orientation lock not supported'))
+          .catch(() => console.log('Orientation lock not supported'))
       }
     }
   }

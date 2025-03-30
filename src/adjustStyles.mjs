@@ -1,14 +1,8 @@
 // src/adjustStyles.mjs aggiornato
-import {
-  NUM_ROWS,
-  NUM_COLS,
-  CELL_SIZE,
-  calculateOptimalCellSize,
-} from './constants.mjs'
+import { NUM_ROWS, NUM_COLS, CELL_SIZE } from './constants.mjs'
 
 export function adjustStyles() {
   const root = document.documentElement
-  const gameBoard = document.getElementById('game-board')
   const gameBoardContainer = document.getElementById('game-board-container')
   const joystickContainer = document.getElementById('joystick-container')
 
