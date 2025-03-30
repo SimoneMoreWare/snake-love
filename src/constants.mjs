@@ -13,6 +13,7 @@ export const SOUND_FOOD = '../assets/soundEffects/food.mp3';
 export const SOUND_GAME_OVER = '../assets/soundEffects/mario_game_over_sms.mp3';
 export const SOUND_LEVEL_UP_LIFE = '../assets/soundEffects/90s-game-ui-6-185099.mp3';
 export const SENSIBILITY = 0.0015;
+export const POINTS_PER_LIFE = 100;
 
 // Funzione per calcolare dinamicamente CELL_SIZE basata sullo spazio disponibile
 export function calculateOptimalCellSize() {

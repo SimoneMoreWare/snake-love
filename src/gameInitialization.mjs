@@ -2,7 +2,7 @@ import { createGameBoard } from './gameBoard.mjs';
 import { addHeartsToBorders } from './heart.mjs';  
 import { Snake } from './snake.mjs';  
 import { Food } from './food.mjs';    
-import { SOUND_GAME_OVER, SOUND_LEVEL_UP_LIFE, NUM_ROWS, NUM_COLS, SCORE, MOVEMENT_INTERVAL, FOOD_CHECK_INTERVAL, SOUND_FOOD } from './constants.mjs';  
+import { SOUND_GAME_OVER, SOUND_LEVEL_UP_LIFE, NUM_ROWS, NUM_COLS, SCORE, MOVEMENT_INTERVAL, FOOD_CHECK_INTERVAL, SOUND_FOOD, POINTS_PER_LIFE} from './constants.mjs';  
 import { JoystickController } from './joystick.mjs';  
 import { SENSIBILITY } from './constants.mjs';  
 import { Timer } from './timer.mjs';
@@ -202,8 +202,15 @@ export class Game {
                     document.getElementById('score').textContent = this.score.toString().padStart(3, '0');
                     
                     // Riproduci suono
-                    const foodSound = new Audio(SOUND_FOOD);
-                    foodSound.play().catch(error => console.error("Errore nella riproduzione audio:", error));
+                    if (this.score % POINTS_PER_LIFE !== 0) {
+                        const foodSound = new Audio(SOUND_FOOD);
+                        foodSound.play().catch(error => console.error("Errore nella riproduzione audio:", error));
+                    } else {
+                        // Riproduci suono di livello superiore
+                        const levelUpSound = new Audio(SOUND_LEVEL_UP_LIFE);
+                        levelUpSound.play().catch(error => console.error("Errore nella riproduzione audio:", error));
+                    }
+                    
                 }
             }
         }, FOOD_CHECK_INTERVAL));
