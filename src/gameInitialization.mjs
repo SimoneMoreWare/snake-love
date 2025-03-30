@@ -326,24 +326,23 @@ export class Game {
         };
     }
     
+    // Aggiungi questo metodo per riavviare il gioco e azzerare il timer
     restartGame() {
-        // Modifiche al metodo esistente
-        this.isGameOver = false;
-        this.isPaused = false;
-        this.isGameReady = false;
-        // Cancella tutti gli intervalli esistenti
-        this.intervals.forEach(clearInterval);
-        this.intervals = [];
-        // Reset overlay
-        if (this.pauseOverlay) {
-            this.pauseOverlay.style.display = 'none';
-        }
-        this.score = 0;
+        // Reset del gioco, dello stato e del timer
+        this.timer.reset(); // Azzera il timer
+
+        this.isGameOver = false; // Imposta il gioco come non finito
+        this.score = 0; // Resetta il punteggio
         document.getElementById('score').textContent = this.score.toString().padStart(3, '0');
-        // Torna alla schermata iniziale
-        this.start();
+        
+        this.resetBoard(); // Resetta la board del gioco
+        this.snake = null;
+        this.food = null;
+
+        this.initializeGame(); // Rinizializza il gioco
+        this.timer.start(); // Riparte il timer da zero
     }
-    
+        
     // Aggiungi metodo di pulizia per quando il gioco viene distrutto
     cleanup() {
         // Rimuovi tutti gli event listener
