@@ -79,6 +79,7 @@ export const BODY_EMOJIS = [
   '🔃',
 ]
 export const FOOD = '🍗'
+export const IS_SOUND_ENABLED = true // Di default l'audio è attivo
 export const SOUND_FOOD = '../assets/soundEffects/food.mp3'
 export const SOUND_GAME_OVER = '../assets/soundEffects/mario_game_over_sms.mp3'
 export const SOUND_LEVEL_UP_LIFE =

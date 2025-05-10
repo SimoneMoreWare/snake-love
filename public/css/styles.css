@@ -9,6 +9,7 @@
 @import url('./start.css');
 @import url('./title.css');
 @import url('./timer.css');
+@import url('./soundToggle.css');
 
 @font-face {
   font-family: Arcade;

@@ -1,0 +1,39 @@
+.sound-toggle {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 2000;
+    font-size: 24px;
+    background: rgb(0 0 0 / 50%);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    transition: all 0.3s ease;
+  }
+  
+  .sound-toggle:hover {
+    background: rgb(0 0 0 / 70%);
+    transform: scale(1.1);
+  }
+  
+  .sound-toggle:active {
+    transform: scale(0.95);
+  }
+  
+  /* Regole responsive per schermi piccoli */
+  @media screen and (width <= 480px) {
+    .sound-toggle {
+      top: 5px;
+      right: 5px;
+      font-size: 20px;
+      width: 36px;
+      height: 36px;
+    }
+  }
