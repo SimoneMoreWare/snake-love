@@ -57,28 +57,70 @@
 /* Stile per orientamento verticale */
 @media (orientation: portrait) {
   #title-container {
-    margin-top: 15vh;
+    margin-top: 10vh; /* Ridotto da 15vh a 10vh per dare più spazio */
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%; /* Assicura che occupi tutta la larghezza */
+    padding: 0 10px; /* Aggiunge un po' di padding laterale */
   }
 
   #title-text {
-    font-size: clamp(24px, 10vw, 55px);
-    text-align: center;  /* Assicurati che il testo sia centrato */
+    font-size: clamp(24px, 8vw, 50px);
+    text-align: center;
+    width: 100%; /* Assicura che occupi tutta la larghezza */
+    display: block; /* Garantisce che il testo sia visualizzato come blocco */
+    margin-bottom: 5px; /* Piccolo margine sotto il testo */
+    color: #333; /* Assicuriamoci che il colore sia visibile */
   }
 
   #title-icons {
-    display: flex;  /* Cambia flex-direction da column a row */
-    flex-direction: row;  /* Icons in row */
-    align-items: center; /* Allinea le icone orizzontalmente */
-    gap: 10px;  /* Spazio tra le icone */
-    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center; /* Centra le icone orizzontalmente */
+    gap: 10px;
+    margin-top: 5px;
+    width: 100%; /* Assicura che occupi tutta la larghezza */
   }
 
   .snake-icon,
   .heart-icon {
-    font-size: 2rem;  /* Imposta una dimensione adeguata per le icone */
+    font-size: clamp(1.5rem, 5vw, 2.5rem); /* Dimensione responsive per le icone */
+  }
+}
+
+/* Regola specifica per Surface Duo e dimensioni simili */
+@media (width >= 530px) and (width <= 550px) and (height >= 710px) and (height <= 730px) {
+  #title-container {
+    margin-top: 5vh; /* Ridotto ulteriormente per questo dispositivo specifico */
+  }
+  
+  #title-text {
+    font-size: 28px !important; /* Dimensione fissa per assicurare visibilità */
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+  
+  #title-icons {
+    margin-top: 8px;
+  }
+  
+  .snake-icon,
+  .heart-icon {
+    font-size: 24px; /* Dimensione più piccola per le icone */
+  }
+}
+
+/* Schermi extra piccoli in orientamento verticale */
+@media (width <= 400px) and (orientation: portrait) {
+  #title-container {
+    margin-top: 5vh; /* Ridotto per schermi molto piccoli */
+  }
+  
+  #title-text {
+    font-size: clamp(18px, 7vw, 30px); /* Ridotto per adattarsi a schermi più piccoli */
   }
 }
 
